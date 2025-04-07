@@ -1,8 +1,8 @@
 import SearchsInputs from "../components/SearchsInputs";
-import CustomersTable from "../features/customers/CustomersTable";
+import CustomersTable from "../features/Customers/CustomersTable";
 import Spinner from "../ui/Spinner";
 import MoveBackBtn from "../components/MoveBackBtn";
-import useGetAllCustomers from "../features/customers/customersHooks/useGetAllCustomers";
+import useGetAllCustomers from "../features/Customers/customersHooks/useGetAllCustomers";
 
 const Customers = () => {
   const { customersData, isFetchingCustomers, errorFetchingCustomers } =

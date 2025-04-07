@@ -5,7 +5,7 @@ import {
 } from "@mui/icons-material";
 import Widget from "../../../components/Widget";
 import useGetEmployees from "../../Employees/employees_hooks/useGetEmployees";
-import useGetAllCustomers from "../../customers/customersHooks/useGetAllCustomers";
+import useGetAllCustomers from "../../Customers/customersHooks/useGetAllCustomers";
 import useGetOrdersAfterDate from "../useGetOrdersAfterDate";
 
 const WidgetsContainer = () => {

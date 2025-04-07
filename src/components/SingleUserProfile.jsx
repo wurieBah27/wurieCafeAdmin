@@ -1,10 +1,10 @@
 import { useParams } from "react-router-dom";
-import useGetSingleEmployee from "../features/employees/employees_hooks/useGetSingleEmployee";
 import { Button } from "flowbite-react";
 import { httpsCallable } from "firebase/functions";
 import { functions } from "../APIS/firebase/firebase";
 import toast from "react-hot-toast";
-import currentUserLoggedIn from "../features/employees/employees_hooks/user";
+import currentUserLoggedIn from "../features/Employees/employees_hooks/user";
+import useGetSingleEmployee from "../features/Employees/employees_hooks/useGetSingleEmployee";
 
 const SingleUserProfile = () => {
   const { userID } = useParams();

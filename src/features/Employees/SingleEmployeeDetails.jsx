@@ -1,9 +1,9 @@
 import { useParams, useSearchParams } from "react-router-dom";
 import SingleUserProfile from "../../components/SingleUserProfile";
-import Chart from "../dashboard/Charts/Chart";
-import OrdersContainer from "../orders/OrdersContainer";
+import Chart from "../Dashboard/Charts/Chart";
+import OrdersContainer from "../Orders/OrdersContainer";
 import useGetSingleEmployee from "./employees_hooks/useGetSingleEmployee";
-import useGetOrdersAfterDate from "../dashboard/useGetOrdersAfterDate";
+import useGetOrdersAfterDate from "../Dashboard/useGetOrdersAfterDate";
 import Filter from "../../components/Filter";
 import { FilterList } from "@mui/icons-material";
 import MoveBackBtn from "../../components/MoveBackBtn";

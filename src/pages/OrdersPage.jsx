@@ -1,7 +1,7 @@
 import { Button } from "flowbite-react";
 import MoveBackBtn from "../components/MoveBackBtn";
-import OrdersContainer from "../features/orders/OrdersContainer";
-import useGetAllOrders from "../features/orders/ordersHooks/useGetAllOrders";
+import OrdersContainer from "../features/Orders/OrdersContainer";
+import useGetAllOrders from "../features/Orders/ordersHooks/useGetAllOrders";
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
