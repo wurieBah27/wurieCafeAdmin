@@ -1,7 +1,7 @@
 import { Button, Label, Modal, Radio, ToggleSwitch } from "flowbite-react";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import useUpdateOrderStatus from "../features/Orders/ordersHooks/useUpdateOrderStatus";
-import getCurrentUser from "../features/employees/employees_hooks/useGetCurrentUser";
+import getCurrentUser from "../features/Employees/employees_hooks/useGetCurrentUser";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 

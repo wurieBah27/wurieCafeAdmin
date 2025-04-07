@@ -1,5 +1,5 @@
 import SearchsInputs from "../components/SearchsInputs";
-import CustomersTable from "../features/Customers/CustomersTable";
+import CustomersTable from "../features/customers/CustomersTable";
 import Spinner from "../ui/Spinner";
 import MoveBackBtn from "../components/MoveBackBtn";
 import useGetAllCustomers from "../features/customers/customersHooks/useGetAllCustomers";

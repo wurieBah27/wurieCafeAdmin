@@ -3,8 +3,8 @@ import useGetSingleEmployee from "../features/Employees/employees_hooks/useGetSi
 import { Button } from "flowbite-react";
 import { httpsCallable } from "firebase/functions";
 import { functions } from "../APIS/firebase/firebase";
-import currentUserLoggedIn from "../features/employees/employees_hooks/user";
 import toast from "react-hot-toast";
+import currentUserLoggedIn from "../features/Employees/employees_hooks/user";
 
 const SingleUserProfile = () => {
   const { userID } = useParams();

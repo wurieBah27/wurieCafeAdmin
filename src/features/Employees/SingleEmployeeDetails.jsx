@@ -1,14 +1,12 @@
 import { useParams, useSearchParams } from "react-router-dom";
 import SingleUserProfile from "../../components/SingleUserProfile";
-import TailTable from "../../components/TailTable";
 import Chart from "../Dashboard/Charts/Chart";
-import useGetAllOrders from "../Orders/ordersHooks/useGetAllOrders";
 import OrdersContainer from "../Orders/OrdersContainer";
-import useGetSingleEmployee from "./employees_hooks/useGetSingleEmployee";
 import useGetOrdersAfterDate from "../Dashboard/useGetOrdersAfterDate";
 import Filter from "../../components/Filter";
 import { FilterList } from "@mui/icons-material";
 import MoveBackBtn from "../../components/MoveBackBtn";
+import useGetSingleEmployee from "./employees_hooks/useGetSingleEmployee";
 
 const filterOptions = [
   { value: "7", label: "Last 7 days" },
