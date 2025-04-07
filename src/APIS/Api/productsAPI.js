@@ -1,4 +1,4 @@
-import imageUpload from "../../helpers/ImageUpload";
+import imageUpload from "../../helpers/imageUpload";
 import { db } from "../firebase/firebase";
 import {
   addDoc,

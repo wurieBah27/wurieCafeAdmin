@@ -1,6 +1,6 @@
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../firebase/firebase";
-import imageUpload from "../../helpers/ImageUpload";
+import imageUpload from "../../helpers/imageUpload";
 
 export const createEmployees = async (data) => {
   try {
