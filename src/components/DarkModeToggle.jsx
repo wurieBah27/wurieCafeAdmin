@@ -1,8 +1,7 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import useLocaleStorage from "../hooks/useLocaleStorage";
 import { toggleTheme } from "../services/darkmodeReducer";
 import { useEffect } from "react";
-import { DarkModeOutlined, LightModeOutlined } from "@mui/icons-material";
 import { DarkModeSelect } from "./Dropdown";
 import { DropdownItem } from "flowbite-react";
 

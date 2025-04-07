@@ -1,37 +1,25 @@
-import { Link } from "react-router-dom";
 import SingleListItem from "./SingleListItem";
 import {
   DashboardOutlined,
   GroupOutlined,
-  InsertChartOutlined,
   LocalShipping,
   LogoutOutlined,
-  NotificationsActiveOutlined,
   PersonOutlineOutlined,
-  PersonOutlineRounded,
-  PsychologyAltOutlined,
   SettingsOutlined,
-  SettingsSystemDaydreamOutlined,
-  ShoppingCart,
   StoreOutlined,
   ViewStreamOutlined,
 } from "@mui/icons-material";
 
 import { useDispatch, useSelector } from "react-redux";
-import { toggleDropdown, toggleSidebar } from "../services/toggle";
+import { toggleSidebar } from "../services/toggle";
 import useLogout from "../features/Employees/employees_hooks/useLogout";
-import getCurrentUser from "../features/employees/employees_hooks/useGetCurrentUser";
+import getCurrentUser from "../features/Employees/employees_hooks/useGetCurrentUser";
+import Spinner from "./Spinner";
 
 const SideBar = () => {
   const { singleEmployee = {} } = getCurrentUser();
   const { img, userEmail, fullname } = singleEmployee;
   const dispatch = useDispatch();
-  const showDropdown = useSelector((state) => state.user.showDropdown);
-  const showSidebar = useSelector((state) => state.user.showSideBar);
-
-  const handleToggle = () => {
-    dispatch(toggleDropdown(!showDropdown));
-  };
 
   const showSideBar = useSelector((state) => state.user.showSideBar);
 
@@ -40,6 +28,8 @@ const SideBar = () => {
   };
 
   const { loggingOut, isLoading } = useLogout();
+
+  if (isLoading) return <Spinner />;
 
   return (
     <div>

@@ -1,17 +1,11 @@
-import {
-  ChatBubbleOutlineOutlined,
-  NotificationsNoneOutlined,
-  SearchOutlined,
-} from "@mui/icons-material";
+import { SearchOutlined } from "@mui/icons-material";
 import { Avatar, DropdownItem } from "flowbite-react";
 import { LanguageSelect } from "../components/Dropdown";
 
-import { useSelector } from "react-redux";
 import DarkModeToggle from "../components/DarkModeToggle";
-import getCurrentUser from "../features/employees/employees_hooks/useGetCurrentUser";
+import getCurrentUser from "../features/Employees/employees_hooks/useGetCurrentUser";
 
 const HeaderItems = () => {
-  const isDarkMode = useSelector((state) => state.theme.isDarkMode);
   const { singleEmployee = {} } = getCurrentUser();
   const { img } = singleEmployee;
 
