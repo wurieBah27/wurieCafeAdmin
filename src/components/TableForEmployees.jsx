@@ -1,6 +1,6 @@
 import { Button } from "flowbite-react";
 import { useNavigate } from "react-router-dom";
-import currentUserLoggedIn from "../features/employees/employees_hooks/user";
+import currentUserLoggedIn from "../features/Employees/employees_hooks/user";
 
 const TableForEmployees = ({ data = {} }) => {
   const { userUid } = currentUserLoggedIn();
