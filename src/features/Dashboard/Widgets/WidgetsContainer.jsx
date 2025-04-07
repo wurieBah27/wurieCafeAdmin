@@ -4,9 +4,9 @@ import {
   PersonOutlined,
 } from "@mui/icons-material";
 import Widget from "../../../components/Widget";
-import useGetOrdersAfterDate from "../useGetOrdersAfterDate";
 import useGetEmployees from "../../Employees/employees_hooks/useGetEmployees";
 import useGetAllCustomers from "../../customers/customersHooks/useGetAllCustomers";
+import useGetOrdersAfterDate from "../useGetOrdersAfterDate";
 
 const WidgetsContainer = () => {
   const { totalOrders, ordersAfterDate } = useGetOrdersAfterDate();

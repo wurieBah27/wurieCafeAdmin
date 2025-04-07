@@ -1,56 +1,9 @@
-import { TableActions } from "../../components/Dropdown";
-import { DropdownItem } from "flowbite-react";
-import { Link } from "react-router-dom";
 import {
   EmailOutlined,
   PersonOutlined,
   PhoneAndroidOutlined,
 } from "@mui/icons-material";
 import CustomersTableContent from "./CustomersTableContent";
-
-// const actions = [
-//   {
-//     field: "actions",
-//     headerName: "Actions",
-//     width: 150,
-//     renderCell: (params) => {
-//       return (
-//         <div className=" ">
-//           <TableActions>
-//             <DropdownItem>
-//               <Link to={`/customers/${params.row.id}`}>View</Link>
-//             </DropdownItem>
-//             <DropdownItem onClick={() => console.log(params.row.id)}>
-//               Delete
-//             </DropdownItem>
-//           </TableActions>
-//         </div>
-//       );
-//     },
-//   },
-// ];
-
-// const paginationModel = { page: 0, pageSize: 5 };
-
-// const CustomersTable = ({ customersData }) => {
-//   return (
-//     <Paper
-//       sx={{
-//         height: 400,
-//         width: "100%",
-//         backgroundColor: "transparent",
-//       }}
-//     >
-//       <DataGrid
-//         rows={customersData}
-//         columns={customersColums.concat(actions)}
-//         initialState={{ pagination: { paginationModel } }}
-//         pageSizeOptions={[5, 10]}
-//         checkboxSelection
-//       />
-//     </Paper>
-//   );
-// };
 
 const CustomersTable = ({ customersData }) => {
   console.log(customersData);
