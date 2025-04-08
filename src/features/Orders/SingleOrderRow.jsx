@@ -38,11 +38,11 @@ const SingleOrderRow = ({ orderData = {} }) => {
       <td className="w-4 p-2 sm:p-4">
         <CheckBox id={id} />
       </td>
-      <th
+      <td
         scope="row"
-        className="whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white sm:px-6 sm:py-4 sm:text-xl"
+        className={`mr-4 whitespace-nowrap py-2 pr-6 text-gray-700 dark:text-gray-50`}
       >
-        <div className="flex items-center gap-2">
+        <div className="flex w-full items-center gap-2">
           {customerImg ? (
             <img
               className="size-7 rounded-full object-cover"
@@ -52,10 +52,10 @@ const SingleOrderRow = ({ orderData = {} }) => {
           ) : (
             <Avatar rounded />
           )}
-          <span>{firstName}</span>
+          <span className="inline-block">{firstName}</span>
         </div>
-      </th>
-      <td className="w-max text-nowrap px-3 py-2 text-sm sm:px-6 sm:py-4">
+      </td>
+      <td className="text-nowrap px-3 py-2 text-sm sm:px-6 sm:py-4">
         {formattedDate}
       </td>
       <td className="px-3 py-2 text-sm sm:px-6 sm:py-4">{total?.toFixed(2)}</td>

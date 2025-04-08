@@ -1,11 +1,18 @@
+import { Link } from "react-router-dom";
 import SingleListItem from "./SingleListItem";
 import {
   DashboardOutlined,
   GroupOutlined,
+  InsertChartOutlined,
   LocalShipping,
   LogoutOutlined,
+  NotificationsActiveOutlined,
   PersonOutlineOutlined,
+  PersonOutlineRounded,
+  PsychologyAltOutlined,
   SettingsOutlined,
+  SettingsSystemDaydreamOutlined,
+  ShoppingCart,
   StoreOutlined,
   ViewStreamOutlined,
 } from "@mui/icons-material";
@@ -14,7 +21,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { toggleSidebar } from "../services/toggle";
 import useLogout from "../features/Employees/employees_hooks/useLogout";
 import getCurrentUser from "../features/Employees/employees_hooks/useGetCurrentUser";
-import Spinner from "./Spinner";
 
 const SideBar = () => {
   const { singleEmployee = {} } = getCurrentUser();
@@ -28,8 +34,6 @@ const SideBar = () => {
   };
 
   const { loggingOut, isLoading } = useLogout();
-
-  if (isLoading) return <Spinner />;
 
   return (
     <div>

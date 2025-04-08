@@ -4,8 +4,21 @@ import OrdersContainer from "../features/Orders/OrdersContainer";
 import useGetAllOrders from "../features/Orders/ordersHooks/useGetAllOrders";
 import { FilterList } from "@mui/icons-material";
 import Filter from "../components/Filter";
-
 import useGetOrdersAfterDate from "../features/Dashboard/useGetOrdersAfterDate";
+
+const headerContent = [
+  "Customer",
+  "Date",
+  "Amount",
+  "Phone #",
+  "Customer Address ",
+  "Sold By",
+  "Method",
+  "Status",
+  "view",
+  "Actions",
+  "Transaction ID",
+];
 
 const filterOptions = [
   { value: "3", label: "Last 3 days" },
@@ -20,6 +33,8 @@ const Dashboard = () => {
   const filteredOrdersData = ordersAfterDate?.filter(
     (order) => order?.Order_status !== "Delivered",
   );
+
+  const count = filteredOrdersData?.length || 0;
   return (
     <div>
       <div>
@@ -40,7 +55,12 @@ const Dashboard = () => {
       <div>
         <WidgetsContainer />
         <ChartContainer />
-        <OrdersContainer data={filteredOrdersData} />
+        <OrdersContainer
+          data={filteredOrdersData}
+          headerContent={headerContent}
+          count={count}
+          title={"Recent Orders"}
+        />
       </div>
     </div>
   );
