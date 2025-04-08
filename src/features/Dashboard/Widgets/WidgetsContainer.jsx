@@ -2,16 +2,21 @@ import {
   MonetizationOnOutlined,
   PeopleOutlined,
   PersonOutlined,
+  ShoppingBagOutlined,
 } from "@mui/icons-material";
 import Widget from "../../../components/Widget";
 import useGetEmployees from "../../Employees/employees_hooks/useGetEmployees";
 import useGetAllCustomers from "../../Customers/customersHooks/useGetAllCustomers";
 import useGetOrdersAfterDate from "../useGetOrdersAfterDate";
+import useProducts from "../../products/products_hooks/useProducts";
 
 const WidgetsContainer = () => {
   const { totalOrders, ordersAfterDate } = useGetOrdersAfterDate();
   const { totalEmployees } = useGetEmployees();
   const { totalCustomers } = useGetAllCustomers();
+  const { totalProducts } = useProducts();
+
+  console.log(totalProducts);
 
   const pendingOrdersTotalPrice = ordersAfterDate
     ?.filter((order) => order.Order_status !== "Delivered")
@@ -23,7 +28,7 @@ const WidgetsContainer = () => {
 
   return (
     <div className="mb-8 sm:mb-12 md:mb-16">
-      <div className="flex flex-wrap items-center justify-center gap-5">
+      <div className="grid grid-cols-2 flex-wrap items-center justify-center gap-5 max-[390px]:grid-cols-1 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-4">
         <Widget
           data={{ title: "Employees" }}
           Icon={PeopleOutlined}
@@ -36,7 +41,12 @@ const WidgetsContainer = () => {
           total={deliveredOrdersTotalPrice?.toFixed(2)}
         />{" "}
         <Widget
-          data={{ title: "pending orders" }}
+          data={{ title: "products" }}
+          Icon={ShoppingBagOutlined}
+          total={totalProducts}
+        />{" "}
+        <Widget
+          data={{ title: "pending" }}
           Icon={MonetizationOnOutlined}
           total={pendingOrdersTotalPrice?.toFixed(2)}
           url={"/orders"}
@@ -45,6 +55,7 @@ const WidgetsContainer = () => {
           data={{ title: "Orders" }}
           Icon={PersonOutlined}
           total={totalOrders}
+          url={"/orders"}
         />
         <Widget
           data={{ title: "Customers" }}

@@ -6,8 +6,8 @@ const useProducts = () => {
     queryKey: ["products"],
     queryFn: getAllProducts,
   });
-
-  return { products };
+  const totalProducts = products.data?.length || 0;
+  return { products, totalProducts };
 };
 
 export default useProducts;

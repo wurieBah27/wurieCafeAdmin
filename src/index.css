@@ -4,23 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --nav-link-bg-color: rgb(241, 241, 241);
-
-  &.dark-mode {
-    --nav-link-bg-color: rgb(0, 0, 0);
-  }
-  /* Light Mode */
-}
-/* Dark Mode */
-.dark-mode {
-  --primary-color: rgb(24, 24, 247);
-  --secondary-color: rgb(55, 65, 81);
-  --light-bg-color: rgb(18, 18, 18);
-  --dark-bg-color: rgb(0, 0, 0);
-  --text-color: rgb(255, 255, 255);
-}
-
 * {
   font-family: "Roboto", serif;
 }
