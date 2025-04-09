@@ -19,12 +19,16 @@ const TableForProducts = ({ data = {} }) => {
   const navigate = useNavigate();
 
   const { reviewsData } = useGetReviewsById(id);
-  const totalReviews = reviewsData?.length || 0;
-  const averageRatings =
-    reviewsData?.reduce((acc, curr) => acc + curr?.rating || 0, 0) /
-    totalReviews;
 
-  const averageReviewRatings = parseInt(averageRatings)?.toFixed(1) || 0;
+  const totalReviews = reviewsData?.length;
+  console.log(totalReviews, "reviewsData");
+  const averageRatings =
+    totalReviews === 0
+      ? 0
+      : reviewsData?.reduce((acc, curr) => acc + curr?.rating, 0) /
+        totalReviews;
+
+  const averageReviewRatings = averageRatings?.toFixed(1) || 0;
   console.log(averageReviewRatings, "averageRatings");
 
   const handleDuplicate = async () => {
