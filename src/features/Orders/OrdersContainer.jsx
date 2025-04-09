@@ -4,7 +4,7 @@ import { PAGE_SIZE } from "../../helpers/constants";
 
 const OrdersContainer = ({ data, count, headerContent, title }) => {
   return (
-    <div className="boxshadow p-5">
+    <div className="boxshadow p-0 sm:p-5">
       <div>
         <div>
           <h3 className="mb-4 font-bold text-gray-500">{title}</h3>

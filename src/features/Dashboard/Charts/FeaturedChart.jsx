@@ -34,7 +34,7 @@ const FeaturedChart = () => {
               <div className="flex h-[150px] w-full md:h-[100px] md:w-[100px]">
                 <CircularProgressbar
                   value={percentage}
-                  text={percentage}
+                  text={percentage || 0}
                   strokeWidth={5}
                 />
               </div>

@@ -60,6 +60,7 @@ export const getSingleOrder = async ({ id }) => {
 export const updateOrderStatus = async ({
   id,
   orderStatus,
+  declineReason = "",
   employeeInfo = {},
   payment_status,
 }) => {
@@ -70,6 +71,7 @@ export const updateOrderStatus = async ({
       Order_status: orderStatus,
       payment_status: payment_status,
       updated_at: serverTimestamp(),
+      declined: declineReason || false,
       soldBy: {
         employeeName: employeeInfo.employeeName,
         employee_id: employeeInfo.employeeID,

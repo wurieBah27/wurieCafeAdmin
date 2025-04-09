@@ -1,5 +1,6 @@
 import {
   Cabin,
+  ErrorOutlineRounded,
   LocalDining,
   LocalShippingOutlined,
   ThumbDownOutlined,
@@ -8,6 +9,7 @@ import {
 import { Button } from "flowbite-react";
 import { useState } from "react";
 import ConfirmModal from "../../components/ConfirmModal";
+import DeclineOrderModal from "../../components/DeclineOrderModal";
 
 const OrderActions = ({
   status,
@@ -17,6 +19,7 @@ const OrderActions = ({
   paymentStatus,
 }) => {
   const [openModal, setOpenModal] = useState(false);
+  const [openDeclineModal, setOpenDeclineModal] = useState(false);
   const [currentStatus, setCurrentStatus] = useState("");
   const [isUpdate, setIsUpdate] = useState("");
 
@@ -26,6 +29,7 @@ const OrderActions = ({
   };
 
   const handleOpenModal = () => setOpenModal(!openModal);
+  const handleOpenDeclineModal = () => setOpenDeclineModal(!openDeclineModal);
 
   const handleStatus = (status) => setOpenModal(status);
 
@@ -97,6 +101,18 @@ const OrderActions = ({
                 </span>
               </Button>
             )}
+            {status === "Declined" && (
+              <Button
+                color="failure"
+                className="w-full"
+                disabled={status === "Declined"}
+              >
+                <span className="flex items-center gap-2 text-xs">
+                  <ErrorOutlineRounded fontSize="small" />{" "}
+                  <span className="text-nowrap">Declined</span>
+                </span>
+              </Button>
+            )}
           </span>
         </div>
         {showDeclineBtn && status !== "Delivered" && (
@@ -104,6 +120,7 @@ const OrderActions = ({
             gradientDuoTone="pinkToOrange"
             className="w-full"
             disabled={isUpdate}
+            onClick={handleOpenDeclineModal}
           >
             Decline Order <ThumbDownOutlined fontSize="small" />
           </Button>
@@ -118,6 +135,12 @@ const OrderActions = ({
         itemID={itemID}
         paymentStatus={paymentStatus}
         setIsUpdate={handleModalConfirm}
+      />
+      <DeclineOrderModal
+        openModal={openDeclineModal}
+        setOpenModal={handleOpenDeclineModal}
+        itemID={itemID}
+        paymentStatus={paymentStatus}
       />
     </div>
   );

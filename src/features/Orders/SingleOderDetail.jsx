@@ -6,6 +6,7 @@ import useGetSingleOrder from "./ordersHooks/useGetSingleOrder";
 import SingleOrderDetailsFooter from "./SingleOrderDetailsFooter";
 import { dateConverter } from "../../helpers/dateConverter";
 import { useState } from "react";
+import MoveBackBtn from "../../components/MoveBackBtn";
 
 const SingleOderDetail = () => {
   const [itemsTotalPrice, setItemsTotalPrice] = useState(null);
@@ -17,6 +18,7 @@ const SingleOderDetail = () => {
     payment_status: payStatus,
     order_number,
     soldBy,
+    declined,
     order_type,
     items,
     tax,
@@ -36,6 +38,7 @@ const SingleOderDetail = () => {
 
   return (
     <div className="text-gray-600">
+      <MoveBackBtn />
       <div className="flex flex-col md:flex-col lg:flex-row">
         <div className="flex-[3]">
           <div className="flex flex-col gap-1">
@@ -107,8 +110,16 @@ const SingleOderDetail = () => {
                 ))}
               </div>
             </div>
+            {status === "Declined" && (
+              <div className="mt-4 rounded-md p-4 shadow-sm">
+                <h5 className="text-gray-800 dark:text-gray-100">Reason: </h5>
+                <p className="font-bold capitalize text-red-500">{declined}</p>
+              </div>
+            )}
           </div>
-          <OrderActions status={status} itemID={ordersID} />
+          {status !== "Declined" && (
+            <OrderActions status={status} itemID={ordersID} />
+          )}{" "}
         </div>
 
         <div className="flex-[2]">

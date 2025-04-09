@@ -114,7 +114,7 @@ const ConfirmModal = ({
                       value="Cash"
                       onChange={(e) => setPaymentMethod(e.target.value)}
                     />
-                    <Label htmlFor="cash">Card</Label>
+                    <Label htmlFor="cash">Cash</Label>
                   </div>
                   <div className="flex items-center gap-2">
                     <Radio

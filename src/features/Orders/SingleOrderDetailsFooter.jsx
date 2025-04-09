@@ -154,7 +154,7 @@ const SingleOrderDetailsFooter = function ({ itemsTotalPrice }) {
                   <MoneyOutlined fontSize="small" /> Address
                 </span>
                 <span className="text-sm italic">
-                  {`${house_number} , {street} , {city} , {state}`}{" "}
+                  {`${house_number} , ${street} , ${city} , ${state}`}{" "}
                 </span>
               </div>
               <div className="flex items-center justify-between">

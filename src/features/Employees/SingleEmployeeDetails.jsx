@@ -74,7 +74,7 @@ const SingleEmployeeDetails = () => {
         <div className="bottom mt-8">
           <div>
             <div className="boxshadow rounded-md p-2 sm:p-5">
-              <div className="w-full overflow-auto bg-white dark:bg-gray-800">
+              <div className="w-full overflow-auto bg-white dark:bg-gray-100">
                 <OrdersContainer
                   data={paginatedData}
                   count={totalItems}

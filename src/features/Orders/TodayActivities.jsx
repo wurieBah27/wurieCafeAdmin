@@ -23,7 +23,7 @@ const TodayActivities = ({ data = {} }) => {
 
   const { name } = customer;
   return (
-    <li className="flex min-w-max items-center justify-between gap-5 rounded-md bg-white px-3 py-2 dark:bg-gray-700">
+    <li className="flex min-w-max items-center justify-between gap-5 rounded-md bg-white px-3 py-2 dark:bg-gray-600">
       <div className="flex items-center gap-3 rounded-md">
         <img
           src={images}

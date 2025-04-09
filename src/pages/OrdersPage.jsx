@@ -33,7 +33,7 @@ const OrdersPage = () => {
   if (status === "delivered")
     data = ordersData?.filter((order) => order?.Order_status === "Delivered");
   if (status === "cancelled")
-    data = ordersData?.filter((order) => order?.Order_status === "Cancelled");
+    data = ordersData?.filter((order) => order?.Order_status === "Declined");
 
   const PAGE_SIZE = 7; // Assuming 7 items per page for pagination
 

@@ -34,7 +34,7 @@ const SingleOrderRow = ({ orderData = {} }) => {
   const navigate = useNavigate();
 
   return (
-    <tr className="border-b border-gray-200 bg-white hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-600">
+    <tr className="border-b border-gray-200 bg-white hover:bg-gray-50 dark:border-gray-400 dark:bg-gray-600 dark:hover:bg-gray-700">
       <td className="w-4 p-2 sm:p-4">
         <CheckBox id={id} />
       </td>

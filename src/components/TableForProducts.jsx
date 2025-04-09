@@ -24,8 +24,8 @@ const TableForProducts = ({ data = {} }) => {
     reviewsData?.reduce((acc, curr) => acc + curr?.rating || 0, 0) /
     totalReviews;
 
-  console.log(averageRatings, "averageRatings");
-  const averageReviewRatings = averageRatings?.toFixed(1) || 0;
+  const averageReviewRatings = parseInt(averageRatings)?.toFixed(1) || 0;
+  console.log(averageReviewRatings, "averageRatings");
 
   const handleDuplicate = async () => {
     const newProduct = { ...data, name: `copy of ${name}` };
@@ -64,7 +64,7 @@ const TableForProducts = ({ data = {} }) => {
           <StarOutlined fontSize="small" />
 
           <p className="ms-2 text-sm font-bold text-gray-900 dark:text-white">
-            {parseInt(averageReviewRatings) || 0}
+            {averageReviewRatings === "NaN" ? 0 : averageReviewRatings}
           </p>
           <span className="mx-1.5 h-1 w-1 rounded-full bg-gray-500 dark:bg-gray-400"></span>
           <span className="text-sm font-medium text-gray-900 underline hover:no-underline dark:text-white">

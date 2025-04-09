@@ -38,8 +38,8 @@ const OrderItems = ({ order, setItemsTotalPrice }) => {
                   alt=""
                   className="h-48 w-48 object-cover"
                 />
-                <h3 className="absolute right-0 top-0 rounded-full bg-lime-500 p-3 text-xl font-bold uppercase text-gray-900 dark:bg-white dark:text-gray-800 md:p-1 md:text-sm">
-                  {category || ""}
+                <h3 className="absolute right-0 top-0 flex items-center justify-center rounded-full bg-red-500 text-sm font-bold uppercase text-gray-900 dark:bg-red-300 dark:text-gray-800 md:p-1 md:text-sm">
+                  <span>{category || "20% OFF"}</span>
                 </h3>{" "}
               </div>
 
