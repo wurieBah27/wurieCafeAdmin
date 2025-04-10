@@ -27,6 +27,8 @@ const SingleProductDetails = () => {
 
   const { name, price, descriptions, imgUrls, createdAt } = singleProduct || {};
 
+  const discountPrice = (40 / 100) * price;
+
   /* convert the firebase date to a human readadbe date format */
   const { seconds, nanoseconds } = createdAt || {};
   const created = dateConverter(seconds, nanoseconds);
@@ -38,7 +40,6 @@ const SingleProductDetails = () => {
       ? 0
       : reviewsData?.reduce((acc, curr) => acc + curr?.rating, 0) /
         totalReviews;
-
   const averageReviewRatings = averageRatings?.toFixed(1) || 0;
   return (
     <div>
@@ -58,9 +59,25 @@ const SingleProductDetails = () => {
                 {name}
               </h1>
               <div className="mt-4 flex-wrap sm:flex sm:items-center sm:gap-4">
-                <p className="text-2xl font-extrabold text-gray-900 dark:text-white sm:text-3xl">
-                  <span className="text-sm">Price: AED</span> {price}
-                </p>
+                <div className="flex items-end gap-3 text-2xl font-extrabold text-gray-900 dark:text-white sm:text-3xl">
+                  <div>
+                    <p className="text-sm">
+                      Price: AED <span>{discountPrice}</span>
+                    </p>
+                  </div>
+                  <div>
+                    <div className="flex gap-3 text-sm">
+                      {" "}
+                      <p className="inline-block text-sm font-medium text-gray-500 dark:text-gray-400">
+                        <span className="text-gray-500 line-through">
+                          AED {price}
+                        </span>{" "}
+                        <span className="text-lime-700">40% OFF</span>
+                      </p>
+                      <span>(Inc. VAT)</span>
+                    </div>
+                  </div>
+                </div>
 
                 <div className="mt-2 flex items-center gap-2 sm:mt-0">
                   <Rating>
@@ -78,21 +95,28 @@ const SingleProductDetails = () => {
                 </div>
               </div>
 
-              <div className="mt-6 flex flex-col gap-4 sm:mt-8 sm:flex sm:flex-row sm:items-center sm:gap-4">
-                <Button color="gray" className="w-full" size="xs">
-                  Add to featured
-                </Button>
-                <Button color="gray" className="w-full" size="xs">
-                  Delete Product
-                </Button>
-                <Button
+              <div className="my-6 flex items-center gap-2 sm:my-8 sm:flex sm:items-center sm:gap-4">
+                <Badge
                   color="gray"
+                  className="max-w-max cursor-pointer text-center"
                   size="xs"
-                  className="w-full"
+                >
+                  Add to featured
+                </Badge>
+                <Badge
+                  color="gray"
+                  className="max-w-max cursor-pointer text-center"
+                  size="xs"
+                >
+                  Delete Product
+                </Badge>
+                <Badge
+                  color="success"
+                  className="max-w-max cursor-pointer text-center"
                   onClick={() => setOpenModal(true)}
                 >
                   Apply Discount
-                </Button>
+                </Badge>
               </div>
 
               <p className="mt-3 text-sm font-extrabold text-gray-600 dark:text-white">
