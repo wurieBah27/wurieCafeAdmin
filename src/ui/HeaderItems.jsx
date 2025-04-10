@@ -11,10 +11,6 @@ const HeaderItems = () => {
 
   return (
     <div className="flex items-center gap-3">
-      <div className="md:hidden">
-        <SearchOutlined fontSize="small" />
-      </div>
-
       <LanguageSelect>
         <DropdownItem>English</DropdownItem>
       </LanguageSelect>

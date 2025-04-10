@@ -2,6 +2,8 @@ import { useSearchParams } from "react-router-dom";
 import OrdersContainer from "../features/Orders/OrdersContainer";
 import useGetAllOrders from "../features/Orders/ordersHooks/useGetAllOrders";
 import MoveBackBtn from "../components/MoveBackBtn";
+import { PAGE_SIZE } from "../helpers/constants";
+import { useEffect } from "react";
 
 const headerContent = [
   "Customer",
@@ -18,21 +20,19 @@ const headerContent = [
 ];
 
 const OnTransitProducts = () => {
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const { ordersData = [], totalOrders } = useGetAllOrders();
   // Filter orders that are on transit (not delivered or cancelled)
-  const data = ordersData?.filter(
-    (order) => order?.Order_status === "Delivering",
-  );
-  console.log(data);
+
   const page = !searchParams.get("page") ? 1 : Number(searchParams.get("page"));
 
-  const PAGE_SIZE = 7; // Assuming 7 items per page for pagination
+  useEffect(() => {
+    searchParams.set("orderStatus", "Delivering");
+    setSearchParams(searchParams); // Update the URL without reloading the page
+  }, []);
 
   const paginatedData =
-    data?.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE) || []; // Assuming 20 items per page
-  console.log("Orders Data for page:", page, paginatedData); // Debugging line to check the paginated data
-  const totalItems = data.length;
+    ordersData?.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE) || []; // Assuming 20 items per page
   return (
     <div>
       <div className="mb-3 flex items-center justify-between gap-4 overflow-auto py-4 sm:mb-5 lg:mb-6">
@@ -43,10 +43,18 @@ const OnTransitProducts = () => {
       <div>
         <OrdersContainer
           data={paginatedData}
-          count={totalItems}
+          count={totalOrders}
           headerContent={headerContent}
         />
       </div>
+      {paginatedData.length === 0 && (
+        <div className="flex flex-col items-center justify-center py-10">
+          <img src="/deliveryTruck.png" alt="delivery truck" className="" />
+          <h2 className="py-5 text-center text-xl font-bold text-gray-500">
+            No products in transit currently!
+          </h2>
+        </div>
+      )}
     </div>
   );
 };

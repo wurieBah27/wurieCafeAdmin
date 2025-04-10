@@ -15,17 +15,6 @@ const Chart = ({ aspect, title, orders, numDays }) => {
     end: new Date(),
   });
 
-  const totalItems = orders
-    ?.map((item) => item.items)
-    .flat()
-    .reduce((accumulator, currentValue) => {
-      if (currentValue?.totalOptionPrice !== undefined) {
-        return accumulator + currentValue?.totalOptionPrice;
-      }
-
-      return accumulator;
-    }, 0);
-
   const data = allDates.map((date) => {
     return {
       name: format(date, "MMM dd"),
@@ -47,11 +36,15 @@ const Chart = ({ aspect, title, orders, numDays }) => {
   });
   return (
     <>
-      <div className="boxshadow flex flex-[6] flex-col gap-2 rounded-md py-3 sm:p-6">
+      <div className="mt-10 flex flex-[6] flex-col gap-2 rounded-md py-3 sm:p-6">
         <p className="ml-3 text-base font-semibold capitalize text-gray-500">
           {title}
         </p>
-        <ResponsiveContainer width="100%" aspect={aspect}>
+        <ResponsiveContainer
+          width="100%"
+          aspect={aspect}
+          className={"shadow-md"}
+        >
           <AreaChart
             data={data}
             margin={{ top: 10, right: 30, left: 0, bottom: 0 }}

@@ -3,8 +3,15 @@ import Pagination from "../../components/Pagination";
 import { PAGE_SIZE } from "../../helpers/constants";
 
 const OrdersContainer = ({ data, count, headerContent, title }) => {
+  if (!data || data.length === 0) {
+    return (
+      <div className="p-5 text-center text-xl font-bold text-gray-500">
+        No orders available
+      </div>
+    );
+  }
   return (
-    <div className="boxshadow p-0 sm:p-5">
+    <div className="boxshadow rounded-lg p-3 sm:p-7">
       <div>
         <div>
           <h3 className="mb-4 font-bold text-gray-500">{title}</h3>

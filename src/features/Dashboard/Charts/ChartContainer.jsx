@@ -9,8 +9,8 @@ const ChartContainer = () => {
 
   const { ordersAfterDate, numDays } = useGetOrdersAfterDate();
   return (
-    <div>
-      <div className="mb-10 flex flex-col flex-wrap gap-5 overflow-auto lg:flex-row">
+    <div className="boxshadow my-16 rounded-lg py-6">
+      <div className="flex flex-col flex-wrap gap-5 overflow-auto px-2 pb-10 sm:px-4 lg:flex-row">
         <div className="boxshadow w-full flex-1 rounded-md bg-gray-50 px-3 py-1.5 text-sm dark:bg-gray-800 md:mb-0">
           <TodayOrders data={todayActivity} />
         </div>

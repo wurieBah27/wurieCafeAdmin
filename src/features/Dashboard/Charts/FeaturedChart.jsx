@@ -17,10 +17,9 @@ const FeaturedChart = () => {
   const isMoreOrdersDelivered = deliveredOrders >= pendingOrders;
 
   const percentage = Math.round((deliveredOrders / totalTodayOrders) * 100);
-
   if (isGettingTodayOrders) return <Spinner />;
   return (
-    <div className="boxshadow mb-10 flex-1 rounded-md px-3 py-1.5 md:mb-0">
+    <div className="boxshadow flex-1 rounded-md px-3 py-1.5">
       <div>
         <div className="top flex items-center justify-between text-gray-500">
           <h2 className="text-base font-semibold">
@@ -33,7 +32,7 @@ const FeaturedChart = () => {
             <div className="flex flex-col items-center justify-center gap-4 text-gray-500">
               <div className="flex h-[150px] w-full md:h-[100px] md:w-[100px]">
                 <CircularProgressbar
-                  value={percentage}
+                  value={percentage || 0}
                   text={percentage || 0}
                   strokeWidth={5}
                 />

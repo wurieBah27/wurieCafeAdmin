@@ -1,7 +1,6 @@
 import ChartContainer from "../features/Dashboard/Charts/ChartContainer";
 import WidgetsContainer from "../features/Dashboard/Widgets/WidgetsContainer";
 import OrdersContainer from "../features/Orders/OrdersContainer";
-import useGetAllOrders from "../features/Orders/ordersHooks/useGetAllOrders";
 import { FilterList } from "@mui/icons-material";
 import Filter from "../components/Filter";
 import useGetOrdersAfterDate from "../features/Dashboard/useGetOrdersAfterDate";
@@ -40,7 +39,9 @@ const Dashboard = () => {
       <div>
         <div className="flex items-center justify-between gap-2 py-6">
           <div>
-            <h2 className="text-xl font-bold text-gray-600">Dashboard</h2>
+            <h2 className="text-xl font-bold text-gray-600 dark:text-gray-100">
+              Dashboard
+            </h2>
           </div>
           <div className="flex items-center justify-evenly gap-5 sm:flex-none">
             <Filter
@@ -52,9 +53,11 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-      <div>
+      <div className="">
         <WidgetsContainer />
-        <ChartContainer />
+        <div className="boxshadow my-16 rounded-lg">
+          <ChartContainer />
+        </div>
         <OrdersContainer
           data={filteredOrdersData}
           headerContent={headerContent}

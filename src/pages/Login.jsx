@@ -17,11 +17,10 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
-  const { loginUser, isLoggingIn } = useLogInUser();
+  const { loginUser } = useLogInUser();
 
   const onUserLoggIn = async (data) => {
-    const { Email, password, MarketingAccept } = data;
-    console.log(Email, password, MarketingAccept);
+    const { Email, password } = data;
 
     loginUser({ email: Email, password: password });
   };

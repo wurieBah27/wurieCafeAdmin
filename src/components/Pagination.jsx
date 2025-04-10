@@ -8,9 +8,8 @@ const Pagination = ({ count }) => {
   const currentPage = !searchParams.get("page")
     ? 1
     : Number(searchParams.get("page")); // Get the current page from URL or default to 1
-  const totalPages = Math.ceil(count / PAGE_SIZE); // Assuming 20 items per page
+  const totalPages = Math.ceil(count / PAGE_SIZE); // Assuming 07 items per page
 
-  console.log(currentPage, totalPages, count); // Debugging line to check current page and total pages
   const nextPage = () => {
     const next = currentPage === totalPages ? currentPage : currentPage + 1; // Calculate the next page
 
@@ -27,7 +26,7 @@ const Pagination = ({ count }) => {
 
   return (
     <div className="flex flex-col items-center justify-between gap-3 px-3 py-6 sm:flex-row">
-      <p className="text-xs text-gray-500 dark:text-gray-400">
+      <p className="text-sm text-gray-500 dark:text-gray-400">
         Showing{" "}
         <span className="font-bold">
           {currentPage === 1 ? 1 : (currentPage - 1) * PAGE_SIZE}-

@@ -28,7 +28,13 @@ const Header = ({ setShowSideBar }) => {
             <MenuOutlined />
           </button>
           <Logo />
-          <SearchInput />
+
+          {/* <div className="w-full max-w-xs text-center text-sm sm:block">
+            <p>
+              <span className="text-xs">Welcome</span>{" "}
+              <span className="font-bold">Khalilu</span>
+            </p>
+          </div> */}
         </div>
 
         <div>

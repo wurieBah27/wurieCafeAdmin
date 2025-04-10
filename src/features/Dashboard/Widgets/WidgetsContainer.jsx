@@ -16,8 +16,6 @@ const WidgetsContainer = () => {
   const { totalCustomers } = useGetAllCustomers();
   const { totalProducts } = useProducts();
 
-  console.log(totalProducts);
-
   const pendingOrdersTotalPrice = ordersAfterDate
     ?.filter((order) => order.Order_status !== "Delivered")
     .reduce((a, b) => a + b.total, 0);

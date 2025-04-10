@@ -6,7 +6,6 @@ import {
 import CustomersTableContent from "./CustomersTableContent";
 
 const CustomersTable = ({ customersData }) => {
-  console.log(customersData);
   return (
     <div>
       <div className="w-[400px]">

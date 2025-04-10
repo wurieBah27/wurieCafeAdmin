@@ -5,8 +5,12 @@ import { TableActions } from "../../components/Dropdown";
 import { useNavigate } from "react-router-dom";
 import { format } from "date-fns";
 import OrderActions from "./OrderActions";
+import useDeleteOrder from "./ordersHooks/useDeleteOrder";
+import ConfirmDeletePopover from "./ConfirmDeletePopover";
+import { useState } from "react";
 
 const SingleOrderRow = ({ orderData = {} }) => {
+  const [modalOpen, setModalOpen] = useState(false);
   const {
     id,
     customer = {},
@@ -19,6 +23,8 @@ const SingleOrderRow = ({ orderData = {} }) => {
     Order_status: status,
     payment_status,
   } = orderData;
+
+  const openModal = () => setModalOpen((modal) => !modal);
 
   const { phone, name } = customer;
 
@@ -97,7 +103,7 @@ const SingleOrderRow = ({ orderData = {} }) => {
               <VisibilityOutlined fontSize="small" /> See Details
             </span>
           </DropdownItem>
-          <DropdownItem>
+          <DropdownItem onClick={openModal}>
             <span className="flex items-center gap-2 text-red-500">
               <DeleteOutlined fontSize="small" /> Delete
             </span>
@@ -105,6 +111,11 @@ const SingleOrderRow = ({ orderData = {} }) => {
         </TableActions>
       </td>
       <td className="px-3 py-2 sm:px-6 sm:py-4">{id}</td>
+      <ConfirmDeletePopover
+        setOpenModal={openModal}
+        openModal={modalOpen}
+        orderId={id}
+      />
     </tr>
   );
 };

@@ -11,13 +11,12 @@ import useGetSingleOrder from "./ordersHooks/useGetSingleOrder";
 import Spinner from "../../ui/Spinner";
 
 const SingleOrderDetailsFooter = function ({ itemsTotalPrice }) {
-  const { singleOrder = {}, loadingOrder, isError } = useGetSingleOrder();
+  const { singleOrder = {}, loadingOrder } = useGetSingleOrder();
 
   const {
     payment_status,
     payment_method,
     items,
-    tip,
     deliveyCharge,
     total,
     notes,
@@ -29,12 +28,9 @@ const SingleOrderDetailsFooter = function ({ itemsTotalPrice }) {
   const { country, city, state, street, house_number } = delivery_address;
 
   /* order calculations */
-  const discount = ((10 / 100) * itemsTotalPrice).toFixed(2);
   const itemsLength = items?.length;
 
   /* customer information */
-
-  console.log(singleOrder);
 
   if (loadingOrder) return <Spinner />;
   return (

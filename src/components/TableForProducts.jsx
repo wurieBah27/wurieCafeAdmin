@@ -13,7 +13,7 @@ import useCreateProduct from "../features/products/products_hooks/useCreateProdu
 import useGetReviewsById from "../features/Reviews/hooks/useGetReviewsById";
 
 const TableForProducts = ({ data = {} }) => {
-  const { id, imgUrls, name, price, averageRating, is_available } = data;
+  const { id, imgUrls, name, price, is_available } = data;
   const { deletingItem } = useDeleteProduct();
   const { createProduct } = useCreateProduct();
   const navigate = useNavigate();
@@ -21,7 +21,6 @@ const TableForProducts = ({ data = {} }) => {
   const { reviewsData } = useGetReviewsById(id);
 
   const totalReviews = reviewsData?.length;
-  console.log(totalReviews, "reviewsData");
   const averageRatings =
     totalReviews === 0
       ? 0
@@ -29,7 +28,6 @@ const TableForProducts = ({ data = {} }) => {
         totalReviews;
 
   const averageReviewRatings = averageRatings?.toFixed(1) || 0;
-  console.log(averageReviewRatings, "averageRatings");
 
   const handleDuplicate = async () => {
     const newProduct = { ...data, name: `copy of ${name}` };

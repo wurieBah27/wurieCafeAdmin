@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 
 const useGetSingleOrder = () => {
   const { ordersID } = useParams();
-  console.log(ordersID);
   const {
     data: singleOrder,
     isLoading: loadingOrder,

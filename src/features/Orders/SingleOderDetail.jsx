@@ -34,8 +34,6 @@ const SingleOderDetail = () => {
   if (loadingOrder) return <Spinner />;
   if (isError) return null;
 
-  console.log(singleOrder);
-
   return (
     <div className="text-gray-600">
       <MoveBackBtn />

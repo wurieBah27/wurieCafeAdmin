@@ -5,7 +5,6 @@ import currentUserLoggedIn from "../features/Employees/employees_hooks/user";
 const TableForEmployees = ({ data = {} }) => {
   const { userUid } = currentUserLoggedIn();
 
-  console.log(userUid);
   const {
     id,
     img,

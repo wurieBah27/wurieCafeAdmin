@@ -1,21 +1,16 @@
 import { useEffect } from "react";
 
-const reduceValue = (item) => item.reduce((x, y) => y?.price + x, 0);
-
 const OrderItems = ({ order, setItemsTotalPrice }) => {
   const {
     category,
     name,
-    size,
     unitPrice,
     image,
     options,
     totalPrice,
     specialNote,
     quantity,
-    price,
   } = order;
-  console.log(order);
 
   useEffect(() => {
     setItemsTotalPrice(totalPrice);
@@ -38,8 +33,10 @@ const OrderItems = ({ order, setItemsTotalPrice }) => {
                   alt=""
                   className="h-48 w-48 object-cover"
                 />
-                <h3 className="absolute right-0 top-0 flex items-center justify-center rounded-full bg-red-500 text-sm font-bold uppercase text-gray-900 dark:bg-red-300 dark:text-gray-800 md:p-1 md:text-sm">
-                  <span>{category || "20% OFF"}</span>
+                <h3 className="font- absolute right-0 top-0 flex items-center justify-center rounded-full bg-red-600 p-2 text-sm uppercase text-gray-900 dark:bg-red-300 dark:text-gray-800">
+                  <span className="text-xs text-gray-50 dark:bg-gray-800 dark:text-gray-200">
+                    {category || "75% OFF"}
+                  </span>
                 </h3>{" "}
               </div>
 

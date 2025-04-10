@@ -10,6 +10,5 @@ export const dateConverter = (seconds, nanoseconds) => {
   const date = fromUnixTime(milliseconds / 1000);
   const formattedDate = format(date, "MMM/dd/yyyy hh:mm a");
 
-  console.log(formattedDate); // Output: 2025-02-13T06:32:57.681Z
   return { formattedDate };
 };

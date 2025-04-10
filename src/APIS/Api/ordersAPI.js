@@ -1,8 +1,10 @@
 import {
   collection,
+  deleteDoc,
   doc,
   getDoc,
   getDocs,
+  limit,
   orderBy,
   query,
   serverTimestamp,
@@ -15,10 +17,22 @@ import { getToday } from "../../helpers/helpers";
 import { parseISO } from "date-fns";
 
 /* get all orders of the shop */
-export const getAllOrders = async () => {
+export const getAllOrders = async ({ numOrders, status }) => {
   try {
     let data = [];
-    const querySnapshot = await getDocs(collection(db, "orders"));
+    const ordRef = collection(db, "orders");
+    let q;
+    if (status === "All") {
+      q = query(ordRef, orderBy("createdAt", "desc"), limit(numOrders * 10));
+    } else {
+      q = query(
+        ordRef,
+        where("Order_status", "==", status),
+        orderBy("createdAt", "desc"),
+        limit(numOrders * 10),
+      );
+    }
+    const querySnapshot = await getDocs(q);
 
     querySnapshot.forEach((doc) => {
       const docData = doc.data();
@@ -131,7 +145,6 @@ export const getTodayActivity = async () => {
     const itemsCollection = collection(db, "orders");
     // Parse the ISO date string into a JavaScript Date object
     const startDate = parseISO(getToday());
-    console.log(startDate);
     // Convert the start date to a Firebase Timestamp for comparison
     const startTimestamp = Timestamp.fromDate(startDate);
     const q = query(
@@ -157,5 +170,21 @@ export const getTodayActivity = async () => {
     console.log(error);
 
     throw new Error(error);
+  }
+};
+
+/* Delete order */
+
+export const deleteOrder = async (id) => {
+  try {
+    if (!id) return;
+    await deleteDoc(doc(db, "orders", id));
+  } catch (error) {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log(errorCode);
+    console.log(errorMessage);
+
+    throw new Error(errorMessage);
   }
 };
