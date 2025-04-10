@@ -66,7 +66,7 @@ const SideBar = () => {
               icon={
                 <StoreOutlined fontSize="small" className="text-[#7451f8]" />
               }
-              text="Menue"
+              text="Products"
             />
 
             <p className="mb-1 border-b border-gray-400 pb-1 pt-6 text-sm uppercase text-[#999]">

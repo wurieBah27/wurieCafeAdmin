@@ -42,6 +42,7 @@ const WidgetsContainer = () => {
           data={{ title: "products" }}
           Icon={ShoppingBagOutlined}
           total={totalProducts}
+          url={"/products"}
         />{" "}
         <Widget
           data={{ title: "pending" }}

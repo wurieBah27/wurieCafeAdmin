@@ -14,7 +14,7 @@ const useGetSingleProduct = () => {
     queryFn: () => getSingleProduct({ id: productID }),
     enabled: !!productID,
   });
-  return { singleProduct, isLoading, isError };
+  return { singleProduct, isLoading, isError, productID };
 };
 
 export default useGetSingleProduct;
