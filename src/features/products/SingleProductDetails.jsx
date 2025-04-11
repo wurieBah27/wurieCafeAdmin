@@ -63,7 +63,8 @@ const SingleProductDetails = () => {
                   <div className="flex items-end gap-3 text-2xl font-extrabold text-gray-900 dark:text-white sm:text-3xl">
                     <div>
                       <p className="text-sm">
-                        Price: AED <span>{discountPrice?.toFixed(2)}</span>
+                        Price: AED{" "}
+                        <span>{(price - discountPrice)?.toFixed(2)}</span>
                       </p>
                     </div>
                     <div>
