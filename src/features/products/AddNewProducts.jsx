@@ -97,7 +97,6 @@ const AddNewProducts = () => {
   const deleteOption = (id) => {
     setAllOptions((option) => option.filter((item) => item.id !== id));
   };
-  console.log(allOptions);
   return (
     <div>
       <section className="bg-white text-gray-500 dark:bg-gray-900">

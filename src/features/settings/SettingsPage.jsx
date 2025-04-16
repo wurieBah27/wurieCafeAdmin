@@ -6,7 +6,6 @@ import useUpdateSettings from "./useUpdateSettings";
 const SettingsPage = () => {
   const { settingsData, isLoading } = useSettings();
   const { updatingSettings } = useUpdateSettings();
-  console.log(settingsData);
   const { addressInLatLng } = settingsData;
   const { lat, lng } = addressInLatLng || {};
   if (isLoading) return <Spinner />;

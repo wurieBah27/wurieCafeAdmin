@@ -26,10 +26,10 @@ const SingleProductDetails = () => {
     discountPercent = {},
   } = singleProduct || {};
 
-  const { discount: discountValue = 0 } = discountPercent || {};
+  const { discount: discountValue = 0, disCountName = "" } =
+    discountPercent || {};
 
   const discountPrice = (discountValue / 100) * price;
-  console.log(isPending);
 
   /* convert the firebase date to a human readadbe date format */
   const { seconds, nanoseconds } = createdAt || {};
@@ -82,13 +82,18 @@ const SingleProductDetails = () => {
                               AED {price}
                             </span>{" "}
                             <span className="text-lime-700 dark:text-lime-500">
-                              {discountValue}% OFF
+                              <span>{discountValue}% OFF</span>{" "}
                             </span>
                           </p>
                         )}
                         <span>(Inc. VAT)</span>
                       </div>
                     </div>
+                    {disCountName && (
+                      <span className="text-sm text-red-500 dark:text-red-400">
+                        ({disCountName})
+                      </span>
+                    )}
                   </div>
 
                   <div className="mt-2 flex items-center gap-2 sm:mt-0">
@@ -170,6 +175,7 @@ const SingleProductDetails = () => {
         onCloseModal={onCloseModal}
         disAbledBtn={handleDisableBtn}
         discountValue={discountValue}
+        defaultName={disCountName}
       />
     </div>
   );

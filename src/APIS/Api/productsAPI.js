@@ -117,14 +117,19 @@ export const editProduct = async (data) => {
   }
 };
 
-export const addDiscount = async ({ id, discount }) => {
+export const addDiscount = async ({ id, discount, disCountName = "" }) => {
   try {
+    if (discount < 0 || discount > 100 || !id) return;
     const docRef = doc(db, "Products", id);
     await updateDoc(
       docRef,
       // updateDoc is used to update the document in the database
       {
-        discountPercent: { discount: discount, createdAt: serverTimestamp() },
+        discountPercent: {
+          discount: discount,
+          disCountName: disCountName,
+          createdAt: serverTimestamp(),
+        },
       },
     );
     return "Discount added successfully!";

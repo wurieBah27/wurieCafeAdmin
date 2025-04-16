@@ -16,19 +16,21 @@ const DiscountModal = ({
   onCloseModal,
   disAbledBtn,
   discountValue = 0,
+  defaultName,
 }) => {
-  const [discount, setDiscount] = useState("");
+  const [discount, setDiscount] = useState(0);
+  const [discountName, setDiscountName] = useState("");
 
   const { applyDiscount, isPending } = useApplyDiscount();
 
   const setDiscountPercentage = () => {
-    if (!discount) return;
     if (discount > 100) return toast.error("Discount cannot be more than 100%");
     if (discount < 0) return toast.error("Discount cannot be less than 0%");
 
     applyDiscount({
       id: productID,
       discount: +discount,
+      disCountName: discountName,
     });
     setDiscount("");
     setOpenModal(false);
@@ -37,7 +39,12 @@ const DiscountModal = ({
   useEffect(() => {
     disAbledBtn(isPending);
   }, [isPending]);
-  disAbledBtn(isPending);
+
+  useEffect(() => {
+    setDiscount(discountValue);
+    setDiscountName(defaultName);
+  }, [discountValue, defaultName]);
+
   return (
     <Modal show={openModal} size="md" onClose={onCloseModal} popup>
       <ModalHeader />
@@ -54,8 +61,21 @@ const DiscountModal = ({
               id="discount"
               type="number"
               placeholder="25%"
-              defaultValue={discountValue}
+              defaultValue={discount}
               onChange={(event) => setDiscount(event.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <div className="mb-2 block">
+              <Label htmlFor="discountName">Offer Name </Label>
+            </div>
+            <TextInput
+              id="discountName"
+              type="text"
+              placeholder="Eid Special"
+              defaultValue={defaultName}
+              onChange={(event) => setDiscountName(event.target.value)}
               required
             />
           </div>

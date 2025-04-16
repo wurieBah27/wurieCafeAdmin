@@ -1,11 +1,7 @@
 import TableForProducts from "../../components/TableForProducts";
 import Spinner from "../../ui/Spinner";
-import useProducts from "./products_hooks/useProducts";
 
-const ProductsTable = () => {
-  const { products } = useProducts();
-  const { data: productsData, isLoading } = products;
-
+const ProductsTable = ({ productsData = [], isLoading = false }) => {
   if (isLoading) return <Spinner />;
   return (
     <div className="w-full overflow-x-auto">

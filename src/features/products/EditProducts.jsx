@@ -116,7 +116,6 @@ const EditProducts = () => {
   const deleteOption = (id) => {
     setAllOptions((option) => option.filter((item) => item.id !== id));
   };
-  console.log(allOptions);
 
   if (isLoading) return <Spinner />;
   return (
@@ -155,7 +154,31 @@ const EditProducts = () => {
                   placeholder="Type product name"
                 />
               </div>
-
+              <div className="col-span-2 w-full">
+                <label
+                  htmlFor="price"
+                  className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+                >
+                  Price{" "}
+                  {errors?.price && (
+                    <p className="ml-4 inline-block text-xs text-red-400">
+                      ({errors?.price.message})
+                    </p>
+                  )}{" "}
+                </label>
+                <input
+                  type="number"
+                  name="price"
+                  id="price"
+                  {...register("price", {
+                    required: "Price field is required",
+                  })}
+                  defaultValue={singleProduct?.price}
+                  className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-600 focus:border-gray-600 focus:ring-gray-600 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-gray-500 dark:focus:ring-gray-500 ${errors?.price ? "border-red-500" : "border-gray-300"}`}
+                  placeholder="$2999"
+                  required=""
+                />
+              </div>
               <div className="col-span-2 w-full sm:col-span-1">
                 <label
                   htmlFor="category"
@@ -215,31 +238,6 @@ const EditProducts = () => {
                 />
               ))}
 
-              <div className="col-span-2 w-full sm:col-span-1">
-                <label
-                  htmlFor="price"
-                  className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
-                >
-                  Price{" "}
-                  {errors?.price && (
-                    <p className="ml-4 inline-block text-xs text-red-400">
-                      ({errors?.price.message})
-                    </p>
-                  )}{" "}
-                </label>
-                <input
-                  type="number"
-                  name="price"
-                  id="price"
-                  {...register("price", {
-                    required: "Price field is required",
-                  })}
-                  defaultValue={singleProduct?.price}
-                  className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-600 focus:border-gray-600 focus:ring-gray-600 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-gray-500 dark:focus:ring-gray-500 ${errors?.price ? "border-red-500" : "border-gray-300"}`}
-                  placeholder="$2999"
-                  required=""
-                />
-              </div>
               <div className="col-span-2 w-full"></div>
 
               <div className="col-span-2 sm:col-span-2">
