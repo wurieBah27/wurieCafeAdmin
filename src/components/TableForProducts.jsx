@@ -2,6 +2,7 @@ import {
   ContentCopyOutlined,
   DeleteOutlined,
   EditOutlined,
+  PercentOutlined,
   StarOutlined,
   VisibilityOutlined,
 } from "@mui/icons-material";
@@ -11,9 +12,16 @@ import { TableActions } from "./Dropdown";
 import useDeleteProduct from "../features/products/products_hooks/useDeleteProduct";
 import useCreateProduct from "../features/products/products_hooks/useCreateProduct";
 import useGetReviewsById from "../features/Reviews/hooks/useGetReviewsById";
+import DiscountModal from "./DiscountModal";
+import { useState } from "react";
 
 const TableForProducts = ({ data = {} }) => {
   const { id, imgUrls, name, price, is_available, discountPercent = {} } = data;
+  const [isPending, setIspending] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
+
+  const handleDisableBtn = (state) => setIspending(state);
+  const onCloseModal = () => setOpenModal(false);
 
   const { discount: discountValue = 0 } = discountPercent || {};
   const discountPrice = (discountValue / 100) * price;
@@ -45,7 +53,7 @@ const TableForProducts = ({ data = {} }) => {
   return (
     <tr
       className={
-        !is_available
+        !is_available || isPending
           ? "bg-gray-100 opacity-55 dark:bg-gray-600 dark:text-gray-50"
           : ""
       }
@@ -69,7 +77,8 @@ const TableForProducts = ({ data = {} }) => {
         {discountValue > 0 && (
           <span className="text-xs">
             {" "}
-            <span className="line-through">AED 20</span> <span>20% OFF</span>
+            <span className="line-through">AED {price}</span>{" "}
+            <span>{discountValue}% OFF</span>
           </span>
         )}
       </td>
@@ -92,7 +101,7 @@ const TableForProducts = ({ data = {} }) => {
       </td>
 
       <td className="whitespace-nowrap">
-        <Button color="blue" onClick={() => navigate(id)}>
+        <Button color="blue" onClick={() => navigate(id)} disabled={isPending}>
           <VisibilityOutlined /> View
         </Button>
       </td>
@@ -106,6 +115,9 @@ const TableForProducts = ({ data = {} }) => {
           <DropdownItem onClick={handleDuplicate}>
             <ContentCopyOutlined fontSize="small" /> Duplicate
           </DropdownItem>
+          <DropdownItem onClick={() => setOpenModal(true)}>
+            <PercentOutlined fontSize="small" /> Add Discount
+          </DropdownItem>
           <DropdownItem onClick={() => deletingItem(id)}>
             <span className="text-red-500">
               <DeleteOutlined fontSize="small" /> Delete
@@ -116,6 +128,14 @@ const TableForProducts = ({ data = {} }) => {
       <td className="whitespace-nowrap bg-red-50 px-4 py-2 font-medium text-gray-900 dark:bg-gray-700 dark:text-gray-50">
         {id}
       </td>
+      <DiscountModal
+        productID={id}
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+        disAbledBtn={handleDisableBtn}
+        onCloseModal={onCloseModal}
+        discountValue={discountValue}
+      />
     </tr>
   );
 };

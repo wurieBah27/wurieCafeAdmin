@@ -6,8 +6,9 @@ const useApplyDiscount = () => {
   const queryClient = useQueryClient();
   const { mutate: applyDiscount, isPending } = useMutation({
     mutationFn: addDiscount,
-    onSuccess: (data) => {
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["singleProduct"] });
+      queryClient.invalidateQueries({ queryKey: ["products"] });
       toast.success("Discount applied successfully");
     },
     onError: (error) => {

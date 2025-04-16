@@ -36,7 +36,6 @@ const DiscountModal = ({
 
   useEffect(() => {
     disAbledBtn(isPending);
-    // Cleanup function to reset the button state when the component unmounts or isPending changes
   }, [isPending]);
   disAbledBtn(isPending);
   return (
