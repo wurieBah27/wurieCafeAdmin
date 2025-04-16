@@ -4,34 +4,38 @@ import { dateConverter } from "../../helpers/dateConverter";
 import MoveBackBtn from "../../components/MoveBackBtn";
 import useGetReviewsById from "../Reviews/hooks/useGetReviewsById";
 import SingleReview from "../../components/SingleReview";
-import {
-  Badge,
-  Button,
-  Label,
-  Modal,
-  ModalBody,
-  ModalHeader,
-  Rating,
-  RatingStar,
-  TextInput,
-} from "flowbite-react";
+import { Badge, Button, Rating, RatingStar } from "flowbite-react";
 import { useState } from "react";
 
-const SingleProductDetails = () => {
-  const { singleProduct, productID } = useGetSingleProduct();
-  const { reviewsData } = useGetReviewsById(productID);
+import Spinner from "../../ui/Spinner";
+import DiscountModal from "../../components/DiscountModal";
 
-  const [discount, setDiscount] = useState("");
+const SingleProductDetails = () => {
+  const { singleProduct, productID, isLoading } = useGetSingleProduct();
+  const { reviewsData } = useGetReviewsById(productID);
+  const [isPending, setIspending] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const onCloseModal = () => setOpenModal(false);
 
-  const { name, price, descriptions, imgUrls, createdAt } = singleProduct || {};
+  const {
+    name,
+    price,
+    descriptions,
+    imgUrls,
+    createdAt,
+    discountPercent = {},
+  } = singleProduct || {};
 
-  const discountPrice = (40 / 100) * price;
+  const { discount: discountValue = 0 } = discountPercent || {};
+
+  const discountPrice = (discountValue / 100) * price;
+  console.log(isPending);
 
   /* convert the firebase date to a human readadbe date format */
   const { seconds, nanoseconds } = createdAt || {};
   const created = dateConverter(seconds, nanoseconds);
+
+  const handleDisableBtn = (state) => setIspending(state);
 
   const totalReviews = reviewsData?.length || 0;
 
@@ -41,6 +45,8 @@ const SingleProductDetails = () => {
       : reviewsData?.reduce((acc, curr) => acc + curr?.rating, 0) /
         totalReviews;
   const averageReviewRatings = averageRatings?.toFixed(1) || 0;
+
+  if (isLoading) return <Spinner />;
   return (
     <div>
       <MoveBackBtn />
@@ -60,7 +66,7 @@ const SingleProductDetails = () => {
                   {name}
                 </h1>
                 <div className="mt-4 flex-wrap sm:flex sm:items-center sm:gap-4">
-                  <div className="flex items-end gap-3 text-2xl font-extrabold text-gray-900 dark:text-white sm:text-3xl">
+                  <div className="flex flex-wrap items-end gap-3 text-2xl font-extrabold text-gray-900 dark:text-white sm:text-3xl">
                     <div>
                       <p className="text-sm">
                         Price: AED{" "}
@@ -70,12 +76,16 @@ const SingleProductDetails = () => {
                     <div>
                       <div className="flex gap-3 text-sm">
                         {" "}
-                        <p className="inline-block text-sm font-medium text-gray-500 dark:text-gray-400">
-                          <span className="text-gray-500 line-through">
-                            AED {price}
-                          </span>{" "}
-                          <span className="text-lime-700">40% OFF</span>
-                        </p>
+                        {discountValue > 0 && (
+                          <p className="inline-block text-sm font-medium text-gray-500 dark:text-gray-400">
+                            <span className="text-gray-500 line-through dark:text-gray-200">
+                              AED {price}
+                            </span>{" "}
+                            <span className="text-lime-700 dark:text-lime-500">
+                              {discountValue}% OFF
+                            </span>
+                          </p>
+                        )}
                         <span>(Inc. VAT)</span>
                       </div>
                     </div>
@@ -100,28 +110,32 @@ const SingleProductDetails = () => {
                   </div>
                 </div>
 
-                <div className="my-6 flex items-center gap-2 sm:my-8 sm:flex sm:items-center sm:gap-4">
-                  <Badge
-                    color="gray"
-                    className="max-w-max cursor-pointer text-center"
+                <div className="my-6 flex items-center justify-center gap-2 sm:my-8 sm:flex sm:items-center sm:gap-4">
+                  <Button
+                    color="blue"
+                    className="flex-1 cursor-pointer text-center uppercase"
                     size="xs"
+                    disabled={isPending}
                   >
-                    Add to featured
-                  </Badge>
-                  <Badge
-                    color="gray"
-                    className="max-w-max cursor-pointer text-center"
+                    Edit
+                  </Button>
+                  <Button
+                    color="failure"
+                    className="flex-1 cursor-pointer text-center uppercase"
                     size="xs"
+                    disabled={isPending}
                   >
-                    Delete Product
-                  </Badge>
-                  <Badge
+                    Delete
+                  </Button>
+                  <Button
                     color="success"
-                    className="max-w-max cursor-pointer text-center"
+                    size="xs"
+                    className="flex-1 cursor-pointer text-center uppercase"
                     onClick={() => setOpenModal(true)}
+                    disabled={isPending}
                   >
-                    Apply Discount
-                  </Badge>
+                    {isPending ? "Adding..." : "Discount"}
+                  </Button>
                 </div>
 
                 <p className="mt-3 text-sm font-extrabold text-gray-600 dark:text-white">
@@ -148,37 +162,15 @@ const SingleProductDetails = () => {
               ))}
           </div>
         </section>
-        <Modal show={openModal} size="md" onClose={onCloseModal} popup>
-          <ModalHeader />
-          <ModalBody>
-            <div className="space-y-6">
-              <h3 className="text-xl font-medium text-gray-900 dark:text-white">
-                Add a discount to this product
-              </h3>
-              <div>
-                <div className="mb-2 block">
-                  <Label htmlFor="discount">Discount in %</Label>
-                </div>
-                <TextInput
-                  id="discount"
-                  type="number"
-                  placeholder="25%"
-                  value={discount}
-                  onChange={(event) => setDiscount(event.target.value)}
-                  required
-                />
-              </div>
-
-              <div className="flex w-full items-center justify-center gap-4">
-                <Button>Add discount</Button>
-                <Button color="failure" onClick={() => setOpenModal(false)}>
-                  Cancel discount
-                </Button>
-              </div>
-            </div>
-          </ModalBody>
-        </Modal>
       </div>
+      <DiscountModal
+        productID={productID}
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+        onCloseModal={onCloseModal}
+        disAbledBtn={handleDisableBtn}
+        discountValue={discountValue}
+      />
     </div>
   );
 };

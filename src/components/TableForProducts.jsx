@@ -13,7 +13,11 @@ import useCreateProduct from "../features/products/products_hooks/useCreateProdu
 import useGetReviewsById from "../features/Reviews/hooks/useGetReviewsById";
 
 const TableForProducts = ({ data = {} }) => {
-  const { id, imgUrls, name, price, is_available } = data;
+  const { id, imgUrls, name, price, is_available, discountPercent = {} } = data;
+
+  const { discount: discountValue = 0 } = discountPercent || {};
+  const discountPrice = (discountValue / 100) * price;
+
   const { deletingItem } = useDeleteProduct();
   const { createProduct } = useCreateProduct();
   const navigate = useNavigate();
@@ -59,7 +63,15 @@ const TableForProducts = ({ data = {} }) => {
         </span>
       </td>
       <td className="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-50">
-        {price}
+        <span className="pr-2 font-bold text-lime-500">
+          {(price - discountPrice).toFixed(2)}
+        </span>{" "}
+        {discountValue > 0 && (
+          <span className="text-xs">
+            {" "}
+            <span className="line-through">AED 20</span> <span>20% OFF</span>
+          </span>
+        )}
       </td>
       <td className="text-gry-700 whitespace-nowrap px-4 py-2 text-yellow-300">
         <div className="flex items-center">

@@ -39,7 +39,7 @@ const SettingsPage = () => {
     return;
   };
   return (
-    <form className="grid grid-cols-2 flex-col gap-4">
+    <form className="grid grid-cols-2 gap-4">
       <div className="col-span-2">
         <div className="mb-2 block">
           <Label htmlFor="companyName">Comapny Name</Label>
@@ -127,18 +127,75 @@ const SettingsPage = () => {
           shadow
         />
       </div>{" "}
-      <div className="col-span-2 sm:col-span-1">
-        <div className="mb-2 block">
-          <Label htmlFor="categories">Delivery Charge</Label>
-        </div>
-        <TextInput
-          id="categories"
-          type="text"
-          placeholder="Main Categories"
-          onBlur={(e) => handleUpdateSettings(e, "categories")}
-          shadow
-        />
-      </div>{" "}
+      <div className="col-span-2 mt-4 grid grid-cols-2 flex-col gap-4">
+        <h3 className="col-span-2 sm:text-2xl">Social Media links</h3>
+        <div className="max-[350px]:col-span-2 sm:col-span-1">
+          <div className="mb-2 block">
+            <Label htmlFor="whatSappLink">WhatSapp Link</Label>
+          </div>
+          <TextInput
+            id="whatSappLink"
+            type="text"
+            placeholder="Main Categories"
+            shadow
+          />
+        </div>{" "}
+        <div className="max-[350px]:col-span-2 sm:col-span-1">
+          <div className="mb-2 block">
+            <Label htmlFor="instagramLink">Instagram Link</Label>
+          </div>
+          <TextInput
+            id="instagramLink"
+            type="text"
+            placeholder="Main Categories"
+            shadow
+          />
+        </div>{" "}
+        <div className="max-[350px]:col-span-2 sm:col-span-1">
+          <div className="mb-2 block">
+            <Label htmlFor="snapChatLink">SnapChat Link</Label>
+          </div>
+          <TextInput
+            id="snapChatLink"
+            type="text"
+            placeholder="Main Categories"
+            shadow
+          />
+        </div>{" "}
+        <div className="max-[350px]:col-span-2 sm:col-span-1">
+          <div className="mb-2 block">
+            <Label htmlFor="tiktokLink">TikTok Link</Label>
+          </div>
+          <TextInput
+            id="tiktokLink"
+            type="text"
+            placeholder="Main Categories"
+            shadow
+          />
+        </div>{" "}
+        <div className="max-[350px]:col-span-2 sm:col-span-1">
+          <div className="mb-2 block">
+            <Label htmlFor="linkedInLink">LinkedIn Link</Label>
+          </div>
+          <TextInput
+            id="linkedInLink"
+            type="text"
+            placeholder="Main Categories"
+            shadow
+          />
+        </div>{" "}
+        <div className="max-[350px]:col-span-2 sm:col-span-1">
+          <div className="mb-2 block">
+            <Label htmlFor="facebookLink">FaceBook Link</Label>
+          </div>
+          <TextInput
+            id="facebookLink"
+            type="text"
+            placeholder="Main Categories"
+            shadow
+          />
+        </div>{" "}
+      </div>
     </form>
   );
 };

@@ -7,8 +7,10 @@ import {
   doc,
   getDoc,
   getDocs,
+  serverTimestamp,
   setDoc,
   Timestamp,
+  updateDoc,
 } from "firebase/firestore";
 
 /* get all documents products from the database */
@@ -112,5 +114,22 @@ export const editProduct = async (data) => {
   } catch (error) {
     console.error("Error uploading data: ", error);
     throw new Error(`An occured while trying to upload data`);
+  }
+};
+
+export const addDiscount = async ({ id, discount }) => {
+  try {
+    const docRef = doc(db, "Products", id);
+    await updateDoc(
+      docRef,
+      // updateDoc is used to update the document in the database
+      {
+        discountPercent: { discount: discount, createdAt: serverTimestamp() },
+      },
+    );
+    return "Discount added successfully!";
+  } catch (error) {
+    console.log(error.message);
+    throw new Error(`An occured while trying to add discount`);
   }
 };

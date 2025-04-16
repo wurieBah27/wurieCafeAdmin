@@ -13,14 +13,14 @@ const EmployeesList = () => {
     <div>
       <div>
         <div>
-          <p className="flex justify-between text-lg text-gray-500 sm:text-lg">
+          <div className="flex justify-between text-lg text-gray-500 sm:text-lg">
             <MoveBackBtn />
-            <AddNewButton name={"Employee"} url={"new"} />
-          </p>{" "}
+          </div>{" "}
           <div className="header mb-4 flex flex-wrap items-center justify-between gap-2 px-2 py-4 shadow-lg">
             <div className="flex-1">
               <SearchsInputs type="text" placeholder={"Search"} />
             </div>
+            <AddNewButton name={"Employee"} url={"new"} />
           </div>
           <div className="employeesList boxshadow w-full overflow-auto rounded-md px-4 py-8">
             <EmployeesTable />

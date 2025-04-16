@@ -6,14 +6,14 @@ const Widget = ({ data, url, Icon, total }) => {
       <div>
         <div>
           <div className="flex items-center justify-between gap-4">
-            <p className="flex aspect-square size-11 items-center justify-center rounded-full bg-[rgba(255,0,0,0.2)] p-1 text-5xl text-[crimson] dark:bg-gray-200">
+            <p className="flex aspect-square size-11 items-center justify-center rounded-full bg-[rgba(255,0,0,0.2)] p-1 text-5xl text-[crimson] dark:bg-gray-200 max-[390px]:size-8">
               {<Icon />}{" "}
             </p>
             <div className="text-center">
-              <h5 className="text-nowrap text-sm font-bold uppercase text-gray-400">
+              <h5 className="text-nowrap text-sm font-bold uppercase text-gray-400 max-[390px]:text-xs">
                 {data?.title}
               </h5>
-              <p className="text-xl font-bold text-gray-800 dark:text-gray-200 md:text-2xl">
+              <p className="text-xl font-bold text-gray-800 dark:text-gray-200 max-[390px]:text-sm sm:text-xl md:text-2xl">
                 {data?.isMoneySign} {total || 0}
               </p>
             </div>

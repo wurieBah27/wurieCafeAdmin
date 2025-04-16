@@ -26,7 +26,7 @@ const WidgetsContainer = () => {
 
   return (
     <div className="mb-8 sm:mb-12 md:mb-16">
-      <div className="grid grid-cols-2 flex-wrap items-center justify-center gap-5 max-[390px]:grid-cols-1 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid grid-cols-2 flex-wrap items-center justify-center gap-2 sm:grid-cols-3 sm:gap-5 md:grid-cols-2 lg:grid-cols-4">
         <Widget
           data={{ title: "Employees" }}
           Icon={PeopleOutlined}

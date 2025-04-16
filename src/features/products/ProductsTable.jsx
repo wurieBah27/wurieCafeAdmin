@@ -21,7 +21,7 @@ const ProductsTable = () => {
                 </th>
 
                 <th className="whitespace-nowrap px-2 py-2 font-medium sm:px-4">
-                  Price
+                  Price (AED)
                 </th>
 
                 <th className="whitespace-nowrap px-2 py-2 font-medium sm:px-4">
