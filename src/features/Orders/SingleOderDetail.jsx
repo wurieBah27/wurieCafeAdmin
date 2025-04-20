@@ -7,6 +7,7 @@ import SingleOrderDetailsFooter from "./SingleOrderDetailsFooter";
 import { dateConverter } from "../../helpers/dateConverter";
 import { useState } from "react";
 import MoveBackBtn from "../../components/MoveBackBtn";
+import CustomerLocation from "../../components/CustomerLocation";
 
 const SingleOderDetail = () => {
   const [itemsTotalPrice, setItemsTotalPrice] = useState(null);
@@ -22,9 +23,11 @@ const SingleOderDetail = () => {
     order_type,
     items,
     tax,
+    images,
     createdAt,
+    delivery_address,
   } = singleOrder;
-
+  console.log(singleOrder);
   const employeeName = soldBy?.employeeName;
   const seconds = createdAt?.seconds;
   const nanoseconds = createdAt?.nanoseconds;
@@ -99,10 +102,10 @@ const SingleOderDetail = () => {
 
             <div>
               <div>
-                {items.map((order) => (
+                {items.map((order, index) => (
                   <OrderItems
                     order={order}
-                    key={order?.item_id}
+                    key={index}
                     setItemsTotalPrice={setItemsTotalPrice}
                   />
                 ))}
@@ -127,6 +130,7 @@ const SingleOderDetail = () => {
           />
         </div>
       </div>
+      <CustomerLocation details={delivery_address} userProfile={images} />
     </div>
   );
 };
