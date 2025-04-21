@@ -1,4 +1,3 @@
-import { SpaTwoTone } from "@mui/icons-material";
 import { useEffect } from "react";
 
 const OrderItems = ({ order, setItemsTotalPrice }) => {
@@ -47,22 +46,20 @@ const OrderItems = ({ order, setItemsTotalPrice }) => {
                 </h3>{" "}
                 <dl className="mt-0.5 flex flex-col space-y-px text-[10px] text-gray-600 dark:text-gray-300">
                   <div className="flex items-center gap-2">
-                    <div className="inline">
+                    <dd className="inline">
                       {options &&
                         Object.keys(options).map((key) => (
                           <div key={key} className="mr-1">
                             {options[key] !== null && (
                               <>
-                                <span className="mr-1 inline">{key}:</span>
-                                <SpaTwoTone className="inline">
-                                  {options[key]}
-                                </SpaTwoTone>{" "}
+                                <dt className="mr-1 inline">{key}:</dt>
+                                <dd className="inline">{options[key]}</dd>{" "}
                                 {" ,"}
                               </>
                             )}{" "}
                           </div>
                         ))}
-                    </div>
+                    </dd>
                   </div>
 
                   <div className="flex gap-2">

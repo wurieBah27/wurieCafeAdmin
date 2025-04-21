@@ -39,7 +39,7 @@ const SideBar = () => {
     <div>
       <aside
         id="sidebar-multi-level-sidebar"
-        className={`fixed left-0 top-24 ${showSideBar ? "translate-x-0" : "-translate-x-full"} z-40 h-screen w-64 pb-24 transition-transform md:translate-x-0`}
+        className={`fixed left-0 top-24 ${showSideBar ? "translate-x-0" : "-translate-x-full"} z-40 h-screen w-64 pb-24 transition-transform lg:translate-x-0`}
         aria-label="Sidebar"
       >
         <div className="h-full overflow-y-auto rounded-tr-2xl bg-gray-50 px-3 py-4 dark:bg-gray-800">
