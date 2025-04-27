@@ -36,7 +36,7 @@ const SingleOrderRow = ({ orderData = {} }) => {
   /* format the date to change to date */
   const dates = new Date(createdAt);
   const formattedDate = format(dates, "MMM/dd/yyyy hh:mm a");
-
+  console.log(customerImg);
   const navigate = useNavigate();
 
   return (
@@ -49,7 +49,7 @@ const SingleOrderRow = ({ orderData = {} }) => {
         className={`mr-4 whitespace-nowrap py-2 pr-6 text-gray-700 dark:text-gray-50`}
       >
         <div className="flex w-full items-center gap-2">
-          {customerImg ? (
+          {customerImg?.at(0) ? (
             <img
               className="size-7 rounded-full object-cover"
               src={customerImg}

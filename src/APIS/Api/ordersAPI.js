@@ -26,7 +26,7 @@ export const getAllOrders = async ({ numOrders, status }) => {
       q = query(ordRef, orderBy("createdAt", "desc"), limit(numOrders * 10));
     } else {
       q = query(
-        (category = ordRef),
+        ordRef,
         where("Order_status", "==", status),
         orderBy("createdAt", "desc"),
         limit(numOrders * 10),
@@ -47,7 +47,9 @@ export const getAllOrders = async ({ numOrders, status }) => {
     });
     return data;
   } catch (error) {
-    console.log(error.message);
+    console.log(error);
+
+    throw new Error(error);
   }
 };
 
