@@ -43,7 +43,6 @@ const CustomerLocation = ({ details, userProfile }) => {
 
   const onMapUnmount = useCallback(() => {
     setMapInstance(null); // Clear the map instance when unmounted
-    console.log("Map instance unmounted");
     setDirectionsResponse(null);
   }, []);
 
@@ -53,8 +52,8 @@ const CustomerLocation = ({ details, userProfile }) => {
       const directionsService = new window.google.maps.DirectionsService();
       directionsService.route(
         {
-          origin: center, // Starting point
-          destination: shopLocation, // Ending point
+          origin: shopLocation, // Starting point
+          destination: center, // Ending point
           travelMode: window.google.maps.TravelMode.DRIVING, // Travel mode
         },
         (result, status) => {
@@ -79,7 +78,7 @@ const CustomerLocation = ({ details, userProfile }) => {
         <GoogleMap
           mapContainerStyle={containerStyle}
           center={center}
-          zoom={19}
+          zoom={18}
           mapTypeId={window.google.maps.MapTypeId.SATELLITE}
           onLoad={onMapLoad} // Pass the onLoad callback
           onUnmount={onMapUnmount} // Pass the onUnmount callback

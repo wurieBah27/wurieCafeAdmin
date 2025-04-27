@@ -26,7 +26,7 @@ export const getAllOrders = async ({ numOrders, status }) => {
       q = query(ordRef, orderBy("createdAt", "desc"), limit(numOrders * 10));
     } else {
       q = query(
-        ordRef,
+        (category = ordRef),
         where("Order_status", "==", status),
         orderBy("createdAt", "desc"),
         limit(numOrders * 10),

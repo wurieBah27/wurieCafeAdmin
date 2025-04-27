@@ -80,14 +80,14 @@ const EditProducts = () => {
   const onSubmit = async (data) => {
     const docData = {
       ...singleProduct,
-      name: data?.name,
+      name: data?.name?.trim(),
       price: data?.price,
       is_available: data?.instock === "true",
       descriptions: data?.description || null,
       notes: notes,
       options: allOptions,
       subCategories: categories,
-      category: data.category,
+      category: data.category?.trim().toLowerCase(),
       imgUrls: singleProduct?.imgUrls || [],
     };
 

@@ -29,8 +29,8 @@ const Customers = () => {
           <div className="py-4 shadow-sm">
             <SearchsInputs placeholder="Search customers by user name..." />
           </div>
-          <div className="relative flex h-[25rem] w-full shadow-md">
-            <div className="absolute bottom-0 left-0 top-0 w-full flex-1 overflow-x-auto py-2">
+          <div className="relative flex w-full shadow-md">
+            <div className="w-full flex-1 overflow-x-auto py-2">
               <CustomersTable customersData={customersData} />
             </div>
           </div>

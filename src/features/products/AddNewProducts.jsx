@@ -61,7 +61,7 @@ const AddNewProducts = () => {
   const onSubmit = async (data) => {
     const docData = {
       price: Number(data.price),
-      name: data.name,
+      name: data.name?.trim(),
       is_available: data.instock === "true",
       descriptions: data?.description || null,
       averageRating: 0,
@@ -69,7 +69,7 @@ const AddNewProducts = () => {
       options: allOptions,
       subCategories: categories,
       notes: notes,
-      category: data.category,
+      category: data.category?.trim().toLowerCase(),
       createdAt: serverTimestamp(),
     };
 
@@ -211,7 +211,7 @@ const AddNewProducts = () => {
 
               <AddMoreText
                 title="Set Sub Categories"
-                id="itemnotes"
+                id="itemCategories"
                 categories={categories}
                 setCategories={setCategories}
               />

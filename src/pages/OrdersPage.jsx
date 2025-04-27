@@ -33,7 +33,7 @@ const filterOptions = [
 
 const OrdersPage = () => {
   const [searchParams] = useSearchParams();
-  const { ordersData = [], totalOrders, isGettingsOrders } = useGetAllOrders();
+  const { ordersData = [], totalOrders } = useGetAllOrders();
   /*  */
   const page = !searchParams.get("page") ? 1 : Number(searchParams.get("page"));
   const paginatedData =
@@ -41,8 +41,7 @@ const OrdersPage = () => {
   return (
     <div>
       <div>
-        <div className="mb-3 flex items-center justify-between gap-4 overflow-auto py-4 sm:mb-5 lg:mb-6">
-          <MoveBackBtn />
+        <div className="mb-3 flex items-center justify-end gap-4 overflow-auto py-4 sm:mb-5 lg:mb-6">
           <div className="flex items-center justify-end gap-4">
             <Filter
               title="Filter By"

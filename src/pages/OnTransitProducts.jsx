@@ -1,7 +1,6 @@
 import { useSearchParams } from "react-router-dom";
 import OrdersContainer from "../features/Orders/OrdersContainer";
 import useGetAllOrders from "../features/Orders/ordersHooks/useGetAllOrders";
-import MoveBackBtn from "../components/MoveBackBtn";
 import { PAGE_SIZE } from "../helpers/constants";
 import { useEffect } from "react";
 
@@ -36,7 +35,6 @@ const OnTransitProducts = () => {
   return (
     <div>
       <div className="mb-3 flex items-center justify-between gap-4 overflow-auto py-4 sm:mb-5 lg:mb-6">
-        <MoveBackBtn />
         <h1 className="text-lg font-semibold">On Transit Products</h1>
       </div>
 

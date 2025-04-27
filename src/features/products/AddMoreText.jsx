@@ -7,7 +7,7 @@ const AddMoreText = ({ categories, setCategories, showInput, title, id }) => {
   const addNewCat = () => {
     if (!subCategory) return;
     const newItem = {
-      name: subCategory?.toLowerCase(),
+      name: subCategory?.trim()?.toLowerCase(),
       price: +subCategoryPrice || "",
       id: Date.now(),
     };
