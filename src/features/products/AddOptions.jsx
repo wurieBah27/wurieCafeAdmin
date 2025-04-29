@@ -40,7 +40,7 @@ const AddOptions = ({ allOptions, setAllOptions }) => {
   };
 
   return (
-    <div className="col-span-2 rounded-lg bg-gray-200 p-5 shadow-xl">
+    <div className="col-span-2 rounded-lg bg-gray-200 p-5 shadow-xl dark:bg-gray-600 dark:text-gray-50">
       <div className="flex w-full flex-col gap-5">
         <div>
           <div className="mb-2 block">
@@ -66,7 +66,7 @@ const AddOptions = ({ allOptions, setAllOptions }) => {
           </Label>
         </div>
 
-        <div className="rounded-lg border border-gray-600 p-4">
+        <div className="rounded-lg border border-gray-600 p-4 dark:border-gray-400">
           <div className="mb-4 flex items-center gap-2">
             <div className="flex-[2]">
               <div className="mb-1 block">

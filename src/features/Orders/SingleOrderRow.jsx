@@ -36,7 +36,6 @@ const SingleOrderRow = ({ orderData = {} }) => {
   /* format the date to change to date */
   const dates = new Date(createdAt);
   const formattedDate = format(dates, "MMM/dd/yyyy hh:mm a");
-  console.log(customerImg);
   const navigate = useNavigate();
 
   return (

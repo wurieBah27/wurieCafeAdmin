@@ -99,8 +99,8 @@ const AddNewProducts = () => {
   };
   return (
     <div>
-      <section className="bg-white text-gray-500 dark:bg-gray-900">
-        <div className="mx-auto max-w-2xl py-8 sm:px-4 lg:py-16">
+      <section className="bg-white text-gray-500 dark:bg-gray-800">
+        <div className="mx-auto max-w-2xl px-2 py-8 sm:px-4 lg:py-16">
           <div className="mb-4 flex items-center justify-between">
             <MoveBackBtn />
             <h2 className="mb-4 text-xl font-bold dark:text-white">
