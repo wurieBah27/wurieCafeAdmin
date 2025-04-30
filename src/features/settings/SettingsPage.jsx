@@ -1,4 +1,4 @@
-import { Button, FileInput, Label, TextInput } from "flowbite-react";
+import { Button, FileInput, Label, Textarea, TextInput } from "flowbite-react";
 import useSettings from "./useSettings";
 import Spinner from "../../ui/Spinner";
 import useUpdateSettings from "./useUpdateSettings";
@@ -6,10 +6,10 @@ import useUpdateSettings from "./useUpdateSettings";
 const SettingsPage = () => {
   const { settingsData, isLoading } = useSettings();
   const { updatingSettings } = useUpdateSettings();
-  const { addressInLatLng } = settingsData;
+  const { addressInLatLng, socialMediaLinks } = settingsData;
   const { lat, lng } = addressInLatLng || {};
   if (isLoading) return <Spinner />;
-
+  console.log(settingsData);
   const handleUpdateSettings = (e, field, fieldName) => {
     let { value } = e.target;
     e.preventDefault();
@@ -23,7 +23,14 @@ const SettingsPage = () => {
       updatingSettings(addressInLatLngData);
       return;
     }
-
+    if (field === "socialMediaLinks") {
+      const socialMediaLinksData = {
+        ...settingsData,
+        socialMediaLinks: { ...socialMediaLinks, [fieldName]: value },
+      };
+      updatingSettings(socialMediaLinksData);
+      return;
+    }
     if (field === "categories") {
       const categoriesData = {
         ...settingsData,
@@ -50,6 +57,19 @@ const SettingsPage = () => {
           placeholder="Company Name"
           shadow
           onBlur={(e) => handleUpdateSettings(e, "companyName")}
+        />
+      </div>
+      <div className="col-span-2">
+        <div className="mb-2 block">
+          <Label htmlFor="companyDescription">Comapny Description</Label>
+        </div>
+        <Textarea
+          id="companyDescription"
+          rows={4}
+          defaultValue={settingsData?.companyDescription}
+          placeholder="Company Description..."
+          shadow
+          onBlur={(e) => handleUpdateSettings(e, "companyDescription")}
         />
       </div>
       <div className="max-[400px]:col-span-2">
@@ -135,6 +155,10 @@ const SettingsPage = () => {
           <TextInput
             id="whatSappLink"
             type="text"
+            defaultValue={settingsData?.socialMediaLinks?.whatsappLink}
+            onBlur={(e) =>
+              handleUpdateSettings(e, "socialMediaLinks", "whatsappLink")
+            }
             placeholder="Main Categories"
             shadow
           />
@@ -147,6 +171,10 @@ const SettingsPage = () => {
             id="instagramLink"
             type="text"
             placeholder="Main Categories"
+            defaultValue={settingsData?.socialMediaLinks?.instagramLink}
+            onBlur={(e) =>
+              handleUpdateSettings(e, "socialMediaLinks", "instagramLink")
+            }
             shadow
           />
         </div>{" "}
@@ -158,6 +186,10 @@ const SettingsPage = () => {
             id="snapChatLink"
             type="text"
             placeholder="Main Categories"
+            defaultValue={settingsData?.socialMediaLinks?.snapChatLink}
+            onBlur={(e) =>
+              handleUpdateSettings(e, "socialMediaLinks", "snapChatLink")
+            }
             shadow
           />
         </div>{" "}
@@ -169,6 +201,10 @@ const SettingsPage = () => {
             id="tiktokLink"
             type="text"
             placeholder="Main Categories"
+            defaultValue={settingsData?.socialMediaLinks?.tiktokLink}
+            onBlur={(e) =>
+              handleUpdateSettings(e, "socialMediaLinks", "tiktokLink")
+            }
             shadow
           />
         </div>{" "}
@@ -180,6 +216,10 @@ const SettingsPage = () => {
             id="linkedInLink"
             type="text"
             placeholder="Main Categories"
+            defaultValue={settingsData?.socialMediaLinks?.linkedInLink}
+            onBlur={(e) =>
+              handleUpdateSettings(e, "socialMediaLinks", "linkedInLink")
+            }
             shadow
           />
         </div>{" "}
@@ -191,6 +231,10 @@ const SettingsPage = () => {
             id="facebookLink"
             type="text"
             placeholder="Main Categories"
+            defaultValue={settingsData?.socialMediaLinks?.facebookLink}
+            onBlur={(e) =>
+              handleUpdateSettings(e, "socialMediaLinks", "facebookLink")
+            }
             shadow
           />
         </div>{" "}
