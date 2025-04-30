@@ -7,7 +7,7 @@ const useDeleteProduct = () => {
 
   const {
     mutate: deletingItem,
-    isLoading,
+    isPending: isLoading,
     isError,
   } = useMutation({
     mutationFn: deleteProduct,

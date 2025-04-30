@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useGetSingleProduct from "./products_hooks/useGetSingleProduct";
 import { dateConverter } from "../../helpers/dateConverter";
 import MoveBackBtn from "../../components/MoveBackBtn";
@@ -9,13 +9,20 @@ import { useState } from "react";
 
 import Spinner from "../../ui/Spinner";
 import DiscountModal from "../../components/DiscountModal";
+import useDeleteProduct from "./products_hooks/useDeleteProduct";
+import ConfirmDeleteProduct from "./ConfirmDeleteProduct";
 
 const SingleProductDetails = () => {
   const { singleProduct, productID, isLoading } = useGetSingleProduct();
+  const { deletingItem } = useDeleteProduct();
+  const navigate = useNavigate();
   const { reviewsData } = useGetReviewsById(productID);
   const [isPending, setIspending] = useState(false);
   const [openModal, setOpenModal] = useState(false);
+  const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const onCloseModal = () => setOpenModal(false);
+
+  const handleOpenModal = () => setOpenDeleteModal(!openDeleteModal);
 
   const {
     name,
@@ -45,6 +52,11 @@ const SingleProductDetails = () => {
       : reviewsData?.reduce((acc, curr) => acc + curr?.rating, 0) /
         totalReviews;
   const averageReviewRatings = averageRatings?.toFixed(1) || 0;
+
+  const handleDeleteProduct = () => {
+    deletingItem(productID);
+    navigate("/products");
+  };
 
   if (isLoading) return <Spinner />;
   return (
@@ -129,6 +141,7 @@ const SingleProductDetails = () => {
                     className="flex-1 cursor-pointer text-center uppercase"
                     size="xs"
                     disabled={isPending}
+                    onClick={handleOpenModal}
                   >
                     Delete
                   </Button>
@@ -176,6 +189,11 @@ const SingleProductDetails = () => {
         disAbledBtn={handleDisableBtn}
         discountValue={discountValue}
         defaultName={disCountName}
+      />
+      <ConfirmDeleteProduct
+        handleOpenModal={handleOpenModal}
+        openModal={openDeleteModal}
+        handleFunc={handleDeleteProduct}
       />
     </div>
   );

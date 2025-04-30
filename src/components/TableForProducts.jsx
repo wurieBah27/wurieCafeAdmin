@@ -14,11 +14,15 @@ import useCreateProduct from "../features/products/products_hooks/useCreateProdu
 import useGetReviewsById from "../features/Reviews/hooks/useGetReviewsById";
 import DiscountModal from "./DiscountModal";
 import { useState } from "react";
+import ConfirmDeleteProduct from "../features/products/ConfirmDeleteProduct";
 
 const TableForProducts = ({ data = {} }) => {
   const { id, imgUrls, name, price, is_available, discountPercent = {} } = data;
   const [isPending, setIspending] = useState(false);
   const [openModal, setOpenModal] = useState(false);
+  const [openDeleteModal, setOpenDeleteModal] = useState(false);
+
+  const handleOpenModal = () => setOpenDeleteModal(!openDeleteModal);
 
   const handleDisableBtn = (state) => setIspending(state);
   const onCloseModal = () => setOpenModal(false);
@@ -31,6 +35,10 @@ const TableForProducts = ({ data = {} }) => {
   const navigate = useNavigate();
 
   const { reviewsData } = useGetReviewsById(id);
+
+  const handleDeleteProduct = () => {
+    deletingItem(id);
+  };
 
   const totalReviews = reviewsData?.length;
   const averageRatings =
@@ -118,7 +126,7 @@ const TableForProducts = ({ data = {} }) => {
           <DropdownItem onClick={() => setOpenModal(true)}>
             <PercentOutlined fontSize="small" /> Add Discount
           </DropdownItem>
-          <DropdownItem onClick={() => deletingItem(id)}>
+          <DropdownItem onClick={handleOpenModal}>
             <span className="text-red-500">
               <DeleteOutlined fontSize="small" /> Delete
             </span>
@@ -135,6 +143,11 @@ const TableForProducts = ({ data = {} }) => {
         disAbledBtn={handleDisableBtn}
         onCloseModal={onCloseModal}
         discountValue={discountValue}
+      />
+      <ConfirmDeleteProduct
+        openModal={openDeleteModal}
+        handleOpenModal={handleOpenModal}
+        handleFunc={handleDeleteProduct}
       />
     </tr>
   );
