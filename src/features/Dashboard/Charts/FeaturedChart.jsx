@@ -40,9 +40,11 @@ const FeaturedChart = () => {
               <span>Delivered {deliveredOrders}</span>
               <div className="flex flex-col items-center justify-center gap-2">
                 <span>Total sales made today.</span>
-                <span>$ {totalTodayRevenue || "No sales today"}</span>
+                <span>
+                  $ {totalTodayRevenue?.toFixed(2) || "No sales today"}
+                </span>
                 <p className="text-center text-[10px]">
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                  Today total orders and total delivered orders{" "}
                 </p>
               </div>
               <div className="w-full">

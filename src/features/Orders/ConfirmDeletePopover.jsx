@@ -7,8 +7,8 @@ const ConfirmDeletePopover = ({ setOpenModal, openModal, orderId }) => {
 
   const handleDelete = async () => {
     if (!orderId) return;
-
     await deleteOrderById(orderId);
+
     setOpenModal(false);
   };
 
