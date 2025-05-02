@@ -1,4 +1,4 @@
-import { Button, Checkbox, Label, TextInput } from "flowbite-react";
+import { Button, Checkbox, Label, Radio, TextInput } from "flowbite-react";
 import { useState } from "react";
 
 const AddOptions = ({ allOptions, setAllOptions }) => {
@@ -6,9 +6,10 @@ const AddOptions = ({ allOptions, setAllOptions }) => {
   const [itemName, setName] = useState("");
   const [price, setPrice] = useState("");
   const [isChecked, setIsChecked] = useState(false);
+  const [multipleSelect, setMultipleSelect] = useState(false);
 
   const [items, setItems] = useState([]);
-
+  console.log(isChecked);
   const showNewItems = () => {
     const newItems = {
       name: itemName,
@@ -25,7 +26,7 @@ const AddOptions = ({ allOptions, setAllOptions }) => {
   const addNewItem = () => {
     const newItem = {
       title: title,
-      isRequired: isChecked,
+      isRequired: isChecked === "singleSelect" ? true : false,
       id: crypto.randomUUID(),
       items: items,
     };
@@ -54,21 +55,34 @@ const AddOptions = ({ allOptions, setAllOptions }) => {
             onChange={(e) => setTitle(e.target.value)}
           />
         </div>
-        <div className="flex items-center gap-2">
-          <Checkbox
-            id="accept"
-            checked={isChecked}
-            value="isRequired"
-            onChange={() => setIsChecked((isChecked) => !isChecked)}
-          />
-          <Label htmlFor="accept" className="flex">
-            Required ?
-          </Label>
+        <div className="flex items-center gap-5">
+          <div>
+            <Radio
+              id="singleSelect"
+              name="accept"
+              value="singleSelect"
+              onChange={(e) => setIsChecked(e.target.value)}
+            />
+            <Label htmlFor="accept" className="flex">
+              Required ?
+            </Label>
+          </div>
+          <div>
+            <Radio
+              id="multiSelect"
+              name="accept"
+              value="multipleSelect"
+              onChange={(e) => setIsChecked(e.target.value)}
+            />
+            <Label htmlFor="accept" className="flex">
+              Multiple select?
+            </Label>
+          </div>
         </div>
 
         <div className="rounded-lg border border-gray-600 p-4 dark:border-gray-400">
-          <div className="mb-4 flex items-center gap-2">
-            <div className="flex-[2]">
+          <div className="mb-4 flex flex-col items-center gap-2 sm:flex-row">
+            <div className="w-full flex-[2]">
               <div className="mb-1 block">
                 <Label htmlFor="name" color="gray" value="Name" />
               </div>
@@ -81,7 +95,7 @@ const AddOptions = ({ allOptions, setAllOptions }) => {
                 onChange={(e) => setName(e.target.value)}
               />
             </div>
-            <div className="flex-1">
+            <div className="w-full flex-1">
               <div className="mb-1 block">
                 <Label htmlFor="price" color="gray" value="Price" />
               </div>
