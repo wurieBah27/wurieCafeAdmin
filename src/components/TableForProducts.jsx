@@ -15,6 +15,7 @@ import useGetReviewsById from "../features/Reviews/hooks/useGetReviewsById";
 import DiscountModal from "./DiscountModal";
 import { useState } from "react";
 import ConfirmDeleteProduct from "../features/products/ConfirmDeleteProduct";
+import { serverTimestamp } from "firebase/firestore";
 
 const TableForProducts = ({ data = {} }) => {
   const { id, imgUrls, name, price, is_available, discountPercent = {} } = data;
@@ -50,7 +51,11 @@ const TableForProducts = ({ data = {} }) => {
   const averageReviewRatings = averageRatings?.toFixed(1) || 0;
 
   const handleDuplicate = async () => {
-    const newProduct = { ...data, name: `copy of ${name}` };
+    const newProduct = {
+      ...data,
+      name: `copy of ${name}`,
+      createdAt: serverTimestamp(),
+    };
     delete newProduct?.id; // Remove the id to ensure a new document is created
 
     await createProduct({

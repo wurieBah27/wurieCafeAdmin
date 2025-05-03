@@ -7,6 +7,8 @@ import {
   doc,
   getDoc,
   getDocs,
+  orderBy,
+  query,
   serverTimestamp,
   setDoc,
   Timestamp,
@@ -17,7 +19,8 @@ import {
 export const getAllProducts = async () => {
   try {
     let data = [];
-    const querySnapshot = await getDocs(collection(db, "Products"));
+    const q = query(collection(db, "Products"), orderBy("createdAt", "desc"));
+    const querySnapshot = await getDocs(q);
 
     querySnapshot.forEach((doc) => {
       const docData = doc.data();
