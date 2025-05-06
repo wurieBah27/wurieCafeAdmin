@@ -27,7 +27,6 @@ const SingleOderDetail = () => {
     createdAt,
     delivery_address,
   } = singleOrder;
-  console.log(singleOrder);
   const employeeName = soldBy?.employeeName;
   const seconds = createdAt?.seconds;
   const nanoseconds = createdAt?.nanoseconds;
@@ -40,7 +39,7 @@ const SingleOderDetail = () => {
   return (
     <div className="text-gray-600">
       <MoveBackBtn />
-      <div className="flex flex-col md:flex-col lg:flex-row">
+      <div className="mt-6 flex flex-col md:flex-col xl:flex-row">
         <div className="flex-[3]">
           <div className="flex flex-col gap-1">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center md:gap-5">
@@ -48,7 +47,7 @@ const SingleOderDetail = () => {
                 <p className="font-bold text-gray-800 dark:text-gray-300 md:text-sm">
                   Order ID:{" "}
                   <span className="pl-3 text-gray-600 dark:text-gray-50">
-                    {ordersID}
+                    INV-{order_number}
                   </span>
                 </p>
               </div>

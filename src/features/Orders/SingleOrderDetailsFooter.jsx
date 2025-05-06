@@ -21,12 +21,13 @@ const SingleOrderDetailsFooter = function ({ itemsTotalPrice }) {
     total,
     notes,
     tax,
+    order_type,
     delivery_address = {},
-    customer: { customerEmail, name, phone, nationality = "Not Apply" },
+    customer: { customerEmail, name, phone },
   } = singleOrder;
 
-  const { country, city, state, street, house_number } = delivery_address;
-
+  const { country, state, street } = delivery_address;
+  console.log(singleOrder);
   /* order calculations */
   const itemsLength = items?.length;
 
@@ -49,17 +50,19 @@ const SingleOrderDetailsFooter = function ({ itemsTotalPrice }) {
                 </span>
                 <span className="capitalize">💵 {payment_method}</span>
               </div>
+
+              <div className="col-span-2 flex items-center justify-between text-gray-500 dark:text-gray-400">
+                <span className="">
+                  Order type <span></span>
+                </span>
+                <span className="text-red-400">{order_type}</span>
+              </div>
+
               <div className="col-span-2 flex items-center justify-between text-gray-500 dark:text-gray-400">
                 <span className="">
                   Subtotal <span>({itemsLength} items)</span>
                 </span>
                 <span>AED {itemsTotalPrice}</span>
-              </div>
-              <div className="col-span-2 flex items-center justify-between text-gray-500 dark:text-gray-400">
-                <span className="">
-                  Discount <span>(10%)</span>
-                </span>
-                <span className="text-red-400">AED -{0}</span>
               </div>
 
               <div className="col-span-2 flex items-center justify-between text-gray-500 dark:text-gray-400">
@@ -106,12 +109,6 @@ const SingleOrderDetailsFooter = function ({ itemsTotalPrice }) {
               </span>
               <span>{phone}</span>
             </div>
-            <div className="flex items-center justify-between">
-              <span>
-                <FlagOutlined fontSize="small" /> Nationality
-              </span>
-              <span>{nationality}</span>
-            </div>
           </div>
         </Accordion.Content>
       </Accordion.Panel>
@@ -145,36 +142,17 @@ const SingleOrderDetailsFooter = function ({ itemsTotalPrice }) {
                 </span>
                 <span>{phone}</span>
               </div>
-              <div className="flex items-center justify-between">
-                <span>
-                  <MoneyOutlined fontSize="small" /> Address
+              <div className="flex items-center justify-between gap-3">
+                <span className="flex items-center gap-2">
+                  <MapOutlined fontSize="small" /> Address
                 </span>
-                <span className="text-sm italic">
-                  {`${house_number} , ${street} , ${city} , ${state}`}{" "}
-                </span>
+                <span className="text-xs italic">{`${street}, ${state}`} </span>
               </div>
               <div className="flex items-center justify-between">
                 <span>
                   <EmailOutlined fontSize="small" /> Postal Code
                 </span>
                 <span>62704</span>
-              </div>
-
-              <div className="flex flex-col justify-between">
-                <span>
-                  <MapOutlined fontSize="small" /> Map
-                </span>
-                <span>
-                  <iframe
-                    src={`https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14568.915295296245!2d-75.3274866!3d39.9484091!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sae!4v1739349582730!5m2!1sen!2sae`}
-                    width="100%"
-                    height="100%"
-                    style={{ border: 0 }}
-                    allowFullScreen=""
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                  ></iframe>
-                </span>
               </div>
             </div>
           </div>
