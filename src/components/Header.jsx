@@ -1,6 +1,5 @@
 import HeaderItems from "../ui/HeaderItems";
 import Logo from "../ui/Logo";
-import SearchInput from "./SearchInput";
 import { MenuOutlined } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleSidebar } from "../services/toggle";
@@ -28,13 +27,6 @@ const Header = ({ setShowSideBar }) => {
             <MenuOutlined />
           </button>
           <Logo />
-
-          {/* <div className="w-full max-w-xs text-center text-sm sm:block">
-            <p>
-              <span className="text-xs">Welcome</span>{" "}
-              <span className="font-bold">Khalilu</span>
-            </p>
-          </div> */}
         </div>
 
         <div>

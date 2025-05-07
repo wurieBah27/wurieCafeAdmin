@@ -60,7 +60,7 @@ const SingleEmployeeDetails = () => {
           />{" "}
         </div>
 
-        <div className="top flex flex-col flex-wrap gap-5 lg:flex-row">
+        <div className="flex flex-col flex-wrap gap-5 xl:flex-row">
           <SingleUserProfile title={"Employee"} />
           <div className="right sm:flex-[2]">
             <Chart
