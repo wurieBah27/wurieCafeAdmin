@@ -133,7 +133,6 @@ const AddNewProducts = () => {
                   placeholder="Type product name"
                 />
               </div>
-
               <div className="col-span-2 w-full">
                 <label
                   htmlFor="price"
@@ -158,7 +157,6 @@ const AddNewProducts = () => {
                   required=""
                 />
               </div>
-
               <div className="col-span-2 w-full sm:col-span-1">
                 <label
                   htmlFor="category"
@@ -194,6 +192,7 @@ const AddNewProducts = () => {
                   <option value="bestSeller">Best Seller</option>
                 </select>
               </div>
+              s
               <div className="col-span-2 w-full sm:col-span-1">
                 <label
                   htmlFor="instock"
@@ -212,7 +211,6 @@ const AddNewProducts = () => {
                   <option value={false}>Out of stock</option>
                 </select>
               </div>
-
               <AddOptions
                 allOptions={allOptions}
                 setAllOptions={setAllOptions}
@@ -227,14 +225,12 @@ const AddNewProducts = () => {
                   deleteOption={deleteOption}
                 />
               ))}
-
               <AddMoreText
                 title="Set Sub Categories"
                 id="itemCategories"
                 categories={categories}
                 setCategories={setCategories}
               />
-
               <div className="col-span-2 sm:col-span-2">
                 <label
                   htmlFor="description"
@@ -263,7 +259,6 @@ const AddNewProducts = () => {
                 categories={notes}
                 setCategories={setNotes}
               />
-
               {/* PRODUCT IMAGES UPLOAD */}
               <div className="col-span-2">
                 <div className="flex w-full items-center justify-center">
