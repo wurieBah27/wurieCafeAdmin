@@ -216,7 +216,7 @@ const EditProducts = () => {
                   defaultValue={singleProduct?.bannerStatus}
                   className="focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-600 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
                 >
-                  {/* <option value="" className="hidden"></option> */}
+                  <option value="" className=""></option>
                   <option value="featured">Featured</option>
                   <option value="newProduct">New</option>
                   <option value="bestSeller">Best Seller</option>
