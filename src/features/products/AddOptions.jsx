@@ -1,15 +1,13 @@
 import { Button, Checkbox, Label, Radio, TextInput } from "flowbite-react";
 import { useState } from "react";
 
-const AddOptions = ({ allOptions, setAllOptions }) => {
+const AddOptions = ({ setAllOptions }) => {
   const [title, setTitle] = useState("");
   const [itemName, setName] = useState("");
   const [price, setPrice] = useState("");
   const [isChecked, setIsChecked] = useState(false);
-  const [multipleSelect, setMultipleSelect] = useState(false);
 
   const [items, setItems] = useState([]);
-  console.log(isChecked);
   const showNewItems = () => {
     const newItems = {
       name: itemName,

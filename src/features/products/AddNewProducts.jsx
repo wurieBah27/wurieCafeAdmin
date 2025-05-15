@@ -50,6 +50,7 @@ const AddNewProducts = () => {
     defaultValues: {
       category: "",
       instock: "",
+      bannerStatus: "",
     },
   });
   /* filter images  */
@@ -70,6 +71,7 @@ const AddNewProducts = () => {
       subCategories: categories,
       notes: notes,
       category: data.category?.trim().toLowerCase(),
+      bannerStatus: data?.bannerStatus?.trim().toLowerCase() || "",
       createdAt: serverTimestamp(),
     };
 
@@ -88,7 +90,6 @@ const AddNewProducts = () => {
   const deleteItem = (id1, id2) => {
     const optionItem = allOptions.find((item) => item.id === id1);
     const deleteItem = optionItem.items.filter((item) => item.id !== id2);
-    console.log(deleteItem);
     setAllOptions((op) => op.filter((item) => item.id !== id1));
 
     setAllOptions((item) => [...item, { ...optionItem, items: deleteItem }]);
@@ -173,6 +174,24 @@ const AddNewProducts = () => {
                   <option value="coffee">Coffee</option>
                   <option value="Chocolates">Chocolates</option>
                   <option value="Flowers">Flowers</option>
+                </select>
+              </div>
+              <div className="col-span-2 w-full sm:col-span-1">
+                <label
+                  htmlFor="bannerStatus"
+                  className="mb-2 block text-sm font-medium dark:text-white"
+                >
+                  Banner Status
+                </label>
+                <select
+                  id="bannerStatus"
+                  {...register("bannerStatus")}
+                  className="focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-600 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
+                >
+                  {/* <option value="" className="hidden"></option> */}
+                  <option value="featured">Featured</option>
+                  <option value="newProduct">New</option>
+                  <option value="bestSeller">Best Seller</option>
                 </select>
               </div>
               <div className="col-span-2 w-full sm:col-span-1">

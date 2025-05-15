@@ -101,7 +101,7 @@ const SingleOderDetail = () => {
 
             <div>
               <div>
-                {items.map((order, index) => (
+                {items?.map((order, index) => (
                   <OrderItems
                     order={order}
                     key={index}

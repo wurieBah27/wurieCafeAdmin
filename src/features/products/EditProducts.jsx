@@ -10,6 +10,7 @@ import Spinner from "../../ui/Spinner";
 import useEditProduct from "./products_hooks/useEditProduct";
 import ShowAllOptions from "./ShowAllOptions";
 import AddOptions from "./AddOptions";
+import { Label, Select } from "flowbite-react";
 
 const EditProducts = () => {
   const { productID } = useParams();
@@ -19,7 +20,7 @@ const EditProducts = () => {
   const { editSingleProduct } = useEditProduct();
 
   const isProductEmpty = Object.keys(singleProduct).length === 0;
-
+  console.log(singleProduct);
   const {
     register,
     reset,
@@ -28,6 +29,8 @@ const EditProducts = () => {
   } = useForm({
     defaultValues: {
       instock: singleProduct?.is_available ? "true" : "false",
+      bannerStatus: singleProduct?.bannerStatus || "",
+      category: singleProduct?.category || "",
     },
   });
 
@@ -46,6 +49,7 @@ const EditProducts = () => {
         name: singleProduct?.name,
         price: singleProduct?.price,
         description: singleProduct?.descriptions,
+        bannerStatus: singleProduct?.bannerStatus,
       });
 
       const { options, notes: message, subCategories } = singleProduct;
@@ -88,6 +92,7 @@ const EditProducts = () => {
       options: allOptions,
       subCategories: categories,
       category: data.category?.trim().toLowerCase(),
+      bannerStatus: data?.bannerStatus?.trim().toLowerCase() || "",
       imgUrls: singleProduct?.imgUrls || [],
     };
 
@@ -107,7 +112,6 @@ const EditProducts = () => {
   const deleteItem = (id1, id2) => {
     const optionItem = allOptions.find((item) => item.id === id1);
     const deleteItem = optionItem.items.filter((item) => item.id !== id2);
-    console.log(deleteItem);
     setAllOptions((op) => op.filter((item) => item.id !== id1));
 
     setAllOptions((item) => [...item, { ...optionItem, items: deleteItem }]);
@@ -125,7 +129,7 @@ const EditProducts = () => {
           <div className="mb-4 flex items-center justify-between">
             <MoveBackBtn />
             <h2 className="mb-4 text-xl font-bold dark:text-white">
-              Edit {singleProduct?.name} product
+              Edit {singleProduct?.name}
             </h2>
           </div>
           <form action="#" onSubmit={handleSubmit(onSubmit)}>
@@ -148,7 +152,7 @@ const EditProducts = () => {
                   {...register("name", {
                     required: "Product name is required",
                   })}
-                  defaultValue={singleProduct.name}
+                  defaultValue={singleProduct?.name}
                   id="name"
                   className={`block w-full rounded-lg border ${errors?.name ? "border-red-500" : "border-gray-300"} bg-gray-50 p-2.5 text-sm text-gray-900 outline-gray-400 focus:border-gray-600 focus:ring-gray-600 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-gray-500 dark:focus:ring-gray-500`}
                   placeholder="Type product name"
@@ -162,7 +166,7 @@ const EditProducts = () => {
                   Price{" "}
                   {errors?.price && (
                     <p className="ml-4 inline-block text-xs text-red-400">
-                      ({errors?.price.message})
+                      ({errors?.price?.message})
                     </p>
                   )}{" "}
                 </label>
@@ -189,15 +193,36 @@ const EditProducts = () => {
                 <select
                   id="category"
                   {...register("category", { required: true })}
-                  defaultValue={singleProduct.category}
+                  defaultValue={singleProduct?.category}
                   className="focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-600 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
                 >
-                  <option value="">Select a category</option>
                   <option value="coffee">Coffee</option>
-                  <option value="Chocolates">Chocolates</option>
+                  <option value="Chocolates" selected>
+                    Chocolates
+                  </option>
                   <option value="Flowers">Flowers</option>
                 </select>
               </div>
+              <div className="col-span-2 w-full sm:col-span-1">
+                <label
+                  htmlFor="bannerStatus"
+                  className="mb-2 block text-sm font-medium dark:text-white"
+                >
+                  Banner Status
+                </label>
+                <select
+                  id="bannerStatus"
+                  {...register("bannerStatus")}
+                  defaultValue={singleProduct?.bannerStatus}
+                  className="focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-600 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
+                >
+                  {/* <option value="" className="hidden"></option> */}
+                  <option value="featured">Featured</option>
+                  <option value="newProduct">New</option>
+                  <option value="bestSeller">Best Seller</option>
+                </select>
+              </div>
+
               <div className="col-span-2 w-full sm:col-span-1">
                 <label
                   htmlFor="instock"
